@@ -1,11 +1,14 @@
 <?php
 
-namespace App\Models;
+namespace Models\Soporte;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\ColumnsNameTrait;
 
 class Prioridad extends Model
 {
-    use HasFactory;
+    use ColumnsNameTrait;
+
+    protected $table = "incidencias__prioridad";
+
 }

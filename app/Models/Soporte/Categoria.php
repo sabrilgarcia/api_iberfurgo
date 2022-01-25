@@ -1,11 +1,11 @@
 <?php
 
-namespace Models;
+namespace Models\Soporte;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 
-class ModuloCategoria extends Model
+class Categoria extends Model
 {
     use ColumnsNameTrait;
 

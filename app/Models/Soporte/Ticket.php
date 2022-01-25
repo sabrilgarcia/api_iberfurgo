@@ -1,11 +1,15 @@
 <?php
 
-namespace App\Models;
+namespace Models\Soporte;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Http\Traits\ColumnsNameTrait;
 
-class Tickets extends Model
+class Ticket extends Model
 {
-    use HasFactory;
+    use ColumnsNameTrait;
+
+    protected $fillable = ['titulo','descripcion', 'categoria_id','prioridad_id',"estado_id","usuario_id"];
+
+    protected $table = "incidencias__tickets";
 }

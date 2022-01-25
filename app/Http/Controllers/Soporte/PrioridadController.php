@@ -1,19 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Soporte;
-use App\Services\Soporte\ModuloService;
+
 use App\Http\Controllers\ApiController;
+use App\Services\Soporte\PrioridadService;
+
+
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Modulo;
+use Models\Soporte\Categoria;
+use Models\Soporte\Prioridad;
 
-class ModuloController extends ApiController
+class PrioridadController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new ModuloService();
+        $this->defaultService = new PrioridadService();
         $this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
@@ -81,7 +85,7 @@ class ModuloController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = Modulo::findOrFail($id);
+            $modulo = Categoria::findOrFail($id);
             
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {

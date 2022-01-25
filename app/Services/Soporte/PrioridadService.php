@@ -5,13 +5,13 @@ namespace App\Services\Soporte;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Soporte\Modulo;
+use Models\Soporte\Prioridad;
 
-class ModuloService
+class PrioridadService
 {
     public function get($fields)
     {
-        $query = new Modulo();
+        $query = new Prioridad();
 
         $query = $this->getQuery($fields, $query);
         return $query->get();
@@ -19,7 +19,7 @@ class ModuloService
 
     public function pluck($fields)
     {
-        $query = new Modulo();
+        $query = new Prioridad();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -29,7 +29,7 @@ class ModuloService
     {
         DB::beginTransaction();
         try {
-            $modulo = new Modulo();
+            $modulo = new Prioridad();
             $modulo->fill($data);
             $modulo->save();
 
@@ -45,7 +45,7 @@ class ModuloService
     {
         DB::beginTransaction();
         try {
-            $modulo = Modulo::find($id);
+            $modulo = Prioridad::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -61,7 +61,7 @@ class ModuloService
     {
         DB::beginTransaction();
         try {
-            $modulo = Modulo::find($id);
+            $modulo = Prioridad::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -75,9 +75,9 @@ class ModuloService
         }
     }
 
-    public function getQuery($fields, Modulo $query)
+    public function getQuery($fields, Prioridad $query)
     {
-        foreach ((new Modulo())->getColumnsName() as $column) {
+        foreach ((new Prioridad())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

@@ -1,20 +1,23 @@
 <?php
 
 namespace App\Http\Controllers\Soporte;
-use App\Services\Soporte\ModuloService;
+
 use App\Http\Controllers\ApiController;
+use App\Services\Soporte\TicketService;
+
+
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Modulo;
+use Models\Soporte\Ticket;
 
-class ModuloController extends ApiController
+class TicketController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new ModuloService();
-        $this->minRequiredFields = ['id','nombre'];
+        $this->defaultService = new TicketService();
+        $this->minRequiredFields = ['titulo','descripcion', 'categoria_id','prioridad_id',"cliente_id","soporte_id"];
         parent::__construct();
     }
 
@@ -81,7 +84,7 @@ class ModuloController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = Modulo::findOrFail($id);
+            $modulo = Ticket::findOrFail($id);
             
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {
