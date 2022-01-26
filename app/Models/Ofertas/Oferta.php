@@ -9,6 +9,6 @@ class Oferta extends Model
 {
     use ColumnsNameTrait;
 
-    protected $table = "ofertas__ofertas";
+    protected $table = "ofertas__oferta";
 
 }

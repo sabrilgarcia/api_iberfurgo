@@ -9,7 +9,7 @@ use App\Services\Ofertas\OfertaService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Oferta;
+use Models\Ofertas\Oferta;
 
 class OfertaController extends ApiController
 {
