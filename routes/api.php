@@ -36,17 +36,13 @@ Route::group(
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
-<<<<<<< HEAD
                     
                     Route::resource('modulos' , 'Soporte\ModuloController');
                     Route::resource('categorias' , 'Soporte\CategoriaController');
                     Route::resource('prioridades' , 'Soporte\PrioridadController');
                     Route::resource('tickets' , 'Soporte\TicketController');
 
-=======
-
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
->>>>>>> ofertas
 
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
