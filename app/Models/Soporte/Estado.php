@@ -5,14 +5,15 @@ namespace Models\Soporte;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 
-class Categoria extends Model
+class Estado extends Model
 {
     use ColumnsNameTrait;
 
-    protected $table = "incidencias__modulos_categorias";
+    protected $table = "incidencias__estados";
 
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
     }
+
 }

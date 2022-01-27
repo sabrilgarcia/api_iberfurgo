@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Soporte;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Soporte\TicketService;
+use App\Services\Soporte\EstadoService;
 
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Ticket;
+use Models\Soporte\Estado;
 
-class TicketController extends ApiController
+class EstadoController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new TicketService();
-        $this->minRequiredFields = ['titulo','descripcion'];
+        $this->defaultService = new EstadoService();
+        // $this->minRequiredFields = ['titulo','descripcion'];
         parent::__construct();
     }
 
@@ -86,7 +86,7 @@ class TicketController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = Ticket::findOrFail($id);
+            $modulo = Estado::findOrFail($id);
             
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {

@@ -21,4 +21,9 @@ class Delegacion extends Model
     {
         return $this->hasOne(DelegacionDatosWeb::class, 'delegacion_id', 'id');
     }
+
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
 }

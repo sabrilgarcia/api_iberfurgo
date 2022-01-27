@@ -40,6 +40,7 @@ Route::group(
                     Route::resource('modulos' , 'Soporte\ModuloController');
                     Route::resource('categorias' , 'Soporte\CategoriaController');
                     Route::resource('prioridades' , 'Soporte\PrioridadController');
+                    Route::resource('estados' , 'Soporte\EstadoController');
                     Route::resource('tickets' , 'Soporte\TicketController');
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');

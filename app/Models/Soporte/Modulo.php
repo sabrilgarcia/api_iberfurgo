@@ -11,8 +11,8 @@ class Modulo extends Model
 
     protected $table ="incidencias__modulos";
 
-    public function categorias()
+    public function tickets()
     {
-        return $this->hasOne(ModuloCategoria::class, 'modulo_id', 'id');
+        return $this->hasMany(Ticket::class);
     }
 }

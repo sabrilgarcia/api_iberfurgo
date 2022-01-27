@@ -5,11 +5,11 @@ namespace Models\Soporte;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 
-class Categoria extends Model
+class Usuario extends Model
 {
     use ColumnsNameTrait;
 
-    protected $table = "incidencias__modulos_categorias";
+    protected $table = "users";
 
     public function tickets()
     {

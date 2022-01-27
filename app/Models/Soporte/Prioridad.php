@@ -11,4 +11,9 @@ class Prioridad extends Model
 
     protected $table = "incidencias__prioridad";
 
+    public function tickets()
+    {
+        return $this->hasMany(Ticket::class);
+    }
+
 }
