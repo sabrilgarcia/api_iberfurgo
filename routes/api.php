@@ -36,6 +36,12 @@ Route::group(
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
+                    
+                    Route::resource('modulos' , 'Soporte\ModuloController');
+                    Route::resource('categorias' , 'Soporte\CategoriaController');
+                    Route::resource('prioridades' , 'Soporte\PrioridadController');
+                    Route::resource('estados' , 'Soporte\EstadoController');
+                    Route::resource('tickets' , 'Soporte\TicketController');
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
 
