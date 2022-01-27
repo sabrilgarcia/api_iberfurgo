@@ -41,7 +41,7 @@ class OfertaService
         return $modulo;
     }
 
-    public function edit($data, $id) 
+    public function edit($data, $id)
     {
         DB::beginTransaction();
         try {
@@ -77,6 +77,7 @@ class OfertaService
 
     public function getQuery($fields, Oferta $query)
     {
+
         foreach ((new Oferta())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);

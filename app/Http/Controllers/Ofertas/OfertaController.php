@@ -9,13 +9,14 @@ use App\Services\Ofertas\OfertaService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Oferta;
+use Models\Ofertas\Oferta;
 
 class OfertaController extends ApiController
 {
 
     public function __construct()
     {
+
         $this->defaultService = new OfertaService();
         $this->minRequiredFields = ['id','nombre'];
         parent::__construct();
@@ -30,10 +31,10 @@ class OfertaController extends ApiController
     {
         try {
             $fields = $request->all();
-            
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-            
+
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -66,7 +67,7 @@ class OfertaController extends ApiController
             if(! $valid) {
                 return $this->respondInvalidMinFilterFields();
             }
-            
+
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -85,7 +86,7 @@ class OfertaController extends ApiController
     {
         try {
             $modulo = Oferta::findOrFail($id);
-            
+
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
@@ -126,7 +127,7 @@ class OfertaController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        } 
+        }
     }
 
     /**
@@ -150,6 +151,6 @@ class OfertaController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        } 
+        }
     }
 }
