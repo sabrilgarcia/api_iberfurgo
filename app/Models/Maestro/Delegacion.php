@@ -26,4 +26,9 @@ class Delegacion extends Model
     {
         return $this->hasMany(Ticket::class);
     }
+
+    public function ofertas()
+    {
+        return $this->hasMany(Oferta::class);
+    }
 }
