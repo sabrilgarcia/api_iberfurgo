@@ -4,14 +4,14 @@ namespace Models\Soporte;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use App\User;
 use Models\Delegacion;
+use Models\Maestro\DelegacionIndice;
 
 class Ticket extends Model
 {
     use ColumnsNameTrait;
 
-    protected $fillable = ['titulo','descripcion', 'observaciones_internas','modulo_id','categoria_id','prioridad_id',"estado_id","usuario_id", 'soporte_id','delegacion_id'];
+    protected $guarded = [];
 
     protected $table = "incidencias__tickets";
 
@@ -43,6 +43,11 @@ class Ticket extends Model
     public function delegacion()
     {
         return $this->belongsTo(Delegacion::class);
+    }
+
+    public function delegacionIndice()
+    {
+        return $this->belongsTo(DelegacionIndice::class);
     }
 
 }
