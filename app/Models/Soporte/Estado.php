@@ -16,4 +16,9 @@ class Estado extends Model
         return $this->hasMany(Ticket::class);
     }
 
+    public function ticket()
+    {
+        return $this->hasOne(Ticket::class);
+    }
+
 }
