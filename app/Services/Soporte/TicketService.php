@@ -14,7 +14,7 @@ class TicketService
         $query = new Ticket();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion')->get();
+        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice')->get();
     }
 
     public function pluck($fields)
