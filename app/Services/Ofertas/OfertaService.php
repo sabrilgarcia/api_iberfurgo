@@ -14,7 +14,7 @@ class OfertaService
         $query = new Oferta();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Delegacion','Cliente')->get();
+        return $query->with('Delegacion','Cliente','DelegacionIndice')->get();
     }
 
     public function pluck($fields)

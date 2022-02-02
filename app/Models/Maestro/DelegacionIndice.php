@@ -4,6 +4,7 @@ namespace Models\Maestro;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Ofertas\Oferta;
 use Models\Soporte\Ticket;
 
 class DelegacionIndice extends Model
@@ -15,5 +16,10 @@ class DelegacionIndice extends Model
     public function tickets()
     {
         return $this->hasMany(Ticket::class);
+    }
+
+    public function ofertas()
+    {
+        return $this->hasMany(Oferta::class);
     }
 }

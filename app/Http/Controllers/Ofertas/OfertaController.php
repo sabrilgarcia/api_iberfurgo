@@ -18,7 +18,7 @@ class OfertaController extends ApiController
     {
 
         $this->defaultService = new OfertaService();
-        $this->minRequiredFields = ['id','nombre'];
+        //$this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
 
@@ -63,10 +63,10 @@ class OfertaController extends ApiController
     {
         try {
             $data = $request->all();
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
+            //$valid = $this->validateMinFields($data);
+            //if(! $valid) {
+            //    return $this->respondInvalidMinFilterFields();
+            //}
 
             $results = $this->defaultService->save($data);
 
