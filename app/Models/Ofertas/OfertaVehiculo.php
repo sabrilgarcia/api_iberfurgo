@@ -11,4 +11,11 @@ class OfertaVehiculo extends Model
 
     protected $table = "ofertas__vehiculo";
 
+    protected $guarded=[];
+
+    public function oferta()
+    {
+        return $this->belongsTo(Oferta::class);
+    }
+
 }

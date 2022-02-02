@@ -30,4 +30,9 @@ class Oferta extends Model
     {
         return $this->belongsTo(DelegacionIndice::class);
     }
+
+    public function ofertasVehiculo()
+    {
+        return $this->hasMany(OfertaVehiculo::class);
+    }
 }

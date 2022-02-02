@@ -3,21 +3,21 @@
 namespace App\Http\Controllers\Ofertas;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Ofertas\OfertaService;
+use App\Services\Ofertas\OfertaVehiculoService;
 
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Ofertas\Oferta;
+use Models\Ofertas\OfertaVehiculo;
 
-class OfertaController extends ApiController
+class OfertaVehiculoController extends ApiController
 {
 
     public function __construct()
     {
 
-        $this->defaultService = new OfertaService();
+        $this->defaultService = new OfertaVehiculoService();
         //$this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
@@ -85,7 +85,7 @@ class OfertaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = Oferta::findOrFail($id);
+            $modulo = OfertaVehiculo::findOrFail($id);
 
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {

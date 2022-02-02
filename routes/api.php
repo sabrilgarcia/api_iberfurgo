@@ -36,7 +36,7 @@ Route::group(
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
-                    
+
                     Route::resource('modulos' , 'Soporte\ModuloController');
                     Route::resource('categorias' , 'Soporte\CategoriaController');
                     Route::resource('prioridades' , 'Soporte\PrioridadController');
@@ -44,6 +44,7 @@ Route::group(
                     Route::resource('tickets' , 'Soporte\TicketController');
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
+                    Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
 
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
