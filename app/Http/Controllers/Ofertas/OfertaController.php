@@ -85,9 +85,9 @@ class OfertaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = Oferta::findOrFail($id);
-
-            return $this->respond(['data' => $modulo]);
+            //$modulo = Oferta::findOrFail($id);
+            $oferta = Oferta::with('Cliente','Delegacion','DelegacionIndice','OfertasVehiculo')->findOrFail($id);
+            return $this->respond(['data' => $oferta]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {
