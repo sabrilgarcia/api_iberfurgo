@@ -45,6 +45,7 @@ Route::group(
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
+                    Route::resource('vehiculos' , 'Flota\VehiculoController');
 
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
