@@ -14,4 +14,9 @@ class Marca extends Model
     {
         return $this->belongsTo(Modelo::class, 'marca_id', 'id');
     }
+
+    public function ofertaVehiculo()
+    {
+        return $this->hasMany(Oferta::class);
+    }
 }

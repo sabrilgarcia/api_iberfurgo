@@ -24,4 +24,9 @@ class Modelo extends Model
     // {
     //     return $this->hasOne(Tipo::class, 'id', 'tipo_id');
     // }
+
+    public function ofertaVehiculo()
+    {
+        return $this->hasMany(Oferta::class);
+    }
 }

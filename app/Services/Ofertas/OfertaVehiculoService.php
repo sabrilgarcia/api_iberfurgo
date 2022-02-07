@@ -14,7 +14,7 @@ class OfertaVehiculoService
         $query = new OfertaVehiculo();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Oferta')->get();
+        return $query->with('Oferta','Marca','Modelo')->get();
     }
 
     public function pluck($fields)
