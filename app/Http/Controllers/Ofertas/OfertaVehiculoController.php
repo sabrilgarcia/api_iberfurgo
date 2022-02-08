@@ -85,7 +85,7 @@ class OfertaVehiculoController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $modulo = OfertaVehiculo::findOrFail($id);
+            $modulo = OfertaVehiculo::with('Marca','Modelo')->findOrFail($id);
 
             return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {

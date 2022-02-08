@@ -4,6 +4,7 @@ namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Models\Modelo;
+use Models\Ofertas\OfertaVehiculo;
 
 class Marca extends Model
 {
@@ -17,6 +18,6 @@ class Marca extends Model
 
     public function ofertaVehiculo()
     {
-        return $this->hasMany(Oferta::class);
+        return $this->hasMany(OfertaVehiculo::class);
     }
 }

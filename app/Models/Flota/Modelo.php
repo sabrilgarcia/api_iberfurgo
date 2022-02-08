@@ -5,6 +5,7 @@ namespace Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 use Models\Marca;
+use Models\Ofertas\OfertaVehiculo;
 use Models\Tipo;
 
 class Modelo extends Model
@@ -27,6 +28,6 @@ class Modelo extends Model
 
     public function ofertaVehiculo()
     {
-        return $this->hasMany(Oferta::class);
+        return $this->hasMany(OfertaVehiculo::class);
     }
 }

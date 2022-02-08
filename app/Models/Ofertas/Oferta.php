@@ -7,6 +7,8 @@ use App\Http\Traits\ColumnsNameTrait;
 use Models\Cliente\Cliente;
 use Models\Delegacion;
 use Models\Maestro\DelegacionIndice;
+use Models\Marca;
+use Models\Modelo;
 
 class Oferta extends Model
 {
@@ -35,4 +37,7 @@ class Oferta extends Model
     {
         return $this->hasMany(OfertaVehiculo::class);
     }
+
+
+
 }

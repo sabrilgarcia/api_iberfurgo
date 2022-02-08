@@ -12,7 +12,7 @@ class OfertaVehiculo extends Model
     use ColumnsNameTrait;
 
     protected $table = "ofertas__vehiculo";
-
+    public $timestamps = false;
     protected $guarded=[];
 
     public function oferta()

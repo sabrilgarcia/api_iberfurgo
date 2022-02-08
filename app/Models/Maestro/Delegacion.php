@@ -4,6 +4,7 @@ namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Maestro\Empresa;
 
 class Delegacion extends Model
 {
@@ -30,5 +31,10 @@ class Delegacion extends Model
     public function ofertas()
     {
         return $this->hasMany(Oferta::class);
+    }
+
+    public function empresa()
+    {
+        return $this->belongsTo(Empresa::class);
     }
 }
