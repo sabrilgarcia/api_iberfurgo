@@ -13,7 +13,7 @@ class ModeloService
         $query = new Modelo();
 
         $query = $this->getQuery($fields, $query);
-        return $query->get();
+        return $query->with('Marca')->get();
     }
 
     public function pluck($fields)

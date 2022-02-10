@@ -13,15 +13,13 @@ class Version extends Model
 
     protected $table = 'flota__version';
 
-    //un modelo tiene a una marca
     public function modelos()
     {
         return $this->hasOne(Modelo::class, 'id', 'modelo_id');
     }
 
-    //un modelo pertenece a un tipo
-    // public function tipo()
-    // {
-    //     return $this->hasOne(Tipo::class, 'id', 'tipo_id');
-    // }
+    public function modelo(){
+        return $this->belongsTo(Modelo::class);
+    }
+
 }

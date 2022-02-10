@@ -32,14 +32,14 @@ class ModeloController extends ApiController
         return $results;
     }
 
-    public function show(Request $request, $modelo_id){
+    public function show(Request $request, $id){
 
         try {
             //$delegacion = Delegacion::findOrFail($delegacion_id);
-            $modelo = Modelo::where('id', $modelo_id)->with('marcas')->firstOrFail();
+            $modelo = Modelo::with('Marca')->findOrFail($id);
                 return $modelo;
         } catch(ModelNotFoundException $e){
-            return $this->respondNotFound('Resource Modelo with id: ' . $modelo_id . ' not found.');
+            return $this->respondNotFound('Resource Modelo with id: ' . $id . ' not found.');
         } catch (\Exception $e) {
             return $this->respondInternalError($e->getMessage());
         }

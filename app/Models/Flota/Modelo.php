@@ -14,20 +14,22 @@ class Modelo extends Model
 
     protected $table = 'flota__modelo';
 
-    //un modelo tiene a una marca
     public function marcas()
     {
         return $this->hasOne(Marca::class, 'id', 'marca_id');
     }
 
-    //un modelo pertenece a un tipo
-    // public function tipo()
-    // {
-    //     return $this->hasOne(Tipo::class, 'id', 'tipo_id');
-    // }
 
     public function ofertaVehiculo()
     {
         return $this->hasMany(OfertaVehiculo::class);
+    }
+
+    public function marca(){
+        return $this->belongsTo(Marca::class);
+    }
+
+    public function versiones(){
+        return $this->hasMany(Version::class);
     }
 }

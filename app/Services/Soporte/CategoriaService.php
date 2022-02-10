@@ -41,7 +41,7 @@ class CategoriaService
         return $modulo;
     }
 
-    public function edit($data, $id) 
+    public function edit($data, $id)
     {
         DB::beginTransaction();
         try {
@@ -57,13 +57,11 @@ class CategoriaService
         return $modulo;
     }
 
-    public function delete ($data, $id)
+    public function delete ($id)
     {
         DB::beginTransaction();
         try {
             $modulo = Categoria::find($id);
-            $modulo->fill($data);
-            $modulo->save();
 
             $modulo->delete();
             DB::commit();
