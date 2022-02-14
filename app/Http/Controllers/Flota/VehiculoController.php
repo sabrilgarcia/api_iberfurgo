@@ -86,8 +86,9 @@ class VehiculoController extends ApiController
     {
         try {
             //$modulo = Oferta::findOrFail($id);
-            $oferta = Vehiculo::findOrFail($id);
-            return $this->respond(['data' => $oferta]);
+            //$modulo = OfertaVehiculo::with('Marca','Modelo')->findOrFail($id);
+            $vehiculo = Vehiculo::with('Version.modelo.marca','Delegacion','vehiculoAdquisicion.proveedor','vehiculoAlquiler')->findOrFail($id);
+            return $this->respond(['data' => $vehiculo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {
