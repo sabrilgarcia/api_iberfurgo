@@ -42,6 +42,8 @@ Route::group(
                     Route::resource('prioridades' , 'Soporte\PrioridadController');
                     Route::resource('estados' , 'Soporte\EstadoController');
                     Route::resource('tickets' , 'Soporte\TicketController');
+                    
+                    Route::resource('combustible' , 'Combustible\CombustibleController');
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
