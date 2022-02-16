@@ -33,4 +33,9 @@ class Vehiculo extends Model
         return $this->belongsTo(VehiculoAlquiler::class, 'id', 'id');
     }
 
+    public function vehiculoSeguro()
+    {
+        return $this->hasMany(vehiculoSeguro::class)->where('tipo','SEGURO');
+    }
+
 }
