@@ -42,11 +42,13 @@ Route::group(
                     Route::resource('prioridades' , 'Soporte\PrioridadController');
                     Route::resource('estados' , 'Soporte\EstadoController');
                     Route::resource('tickets' , 'Soporte\TicketController');
-                    
+
                     Route::resource('combustible' , 'Combustible\CombustibleController');
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
+
+                    Route::resource('menu' , 'Menu\MenuController');
 
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::resource('versiones' , 'Flota\VersionController');
