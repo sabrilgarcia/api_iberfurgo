@@ -35,7 +35,7 @@ class Vehiculo extends Model
 
     public function vehiculoSeguro()
     {
-        return $this->hasMany(vehiculoSeguro::class)->where('tipo','SEGURO');
+        return $this->hasMany(VehiculoSeguro::class)->where('tipo','SEGURO');
     }
 
 }
