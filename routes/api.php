@@ -52,6 +52,12 @@ Route::group(
                     Route::resource('versiones' , 'Flota\VersionController');
                     Route::resource('modelos' , 'ModeloController');
 
+                    Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
+                    
+                    Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
+
+                    Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
+
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
                     Route::get('get-familias-vehiculo', 'TipoController@getFamiliasVehiculo');
