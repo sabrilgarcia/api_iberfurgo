@@ -11,12 +11,15 @@ class FacturaVehiculoService
 {
     public function get($fields)
     {
+        
         $query = new FacturaVehiculo();
-
         $query = $this->getQuery($fields, $query);
+        
         return $query->selectRaw("SUM(total) as total, tipo as grupo" )
+                      ->where('fecha','>=',$fields['fecha_factura_desde'])
+                      ->where('fecha','<=',$fields['fecha_factura_hasta'])
                      ->groupBy('tipo')
-                     ->get();       
+                     ->get();        
     }
 
     public function pluck($fields)
@@ -80,6 +83,7 @@ class FacturaVehiculoService
 
     public function getQuery($fields, FacturaVehiculo $query)
     {
+        
         foreach ((new FacturaVehiculo())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
