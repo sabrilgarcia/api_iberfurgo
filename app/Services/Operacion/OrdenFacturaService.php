@@ -14,7 +14,10 @@ class OrdenFacturaService
         $query = new OrdenFactura();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Orden')->get();
+        return $query->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
+                ->where('operacion__orden.cliente_id', $fields['cliente_id'])
+                ->whereNull('operacion__orden_factura.factura_id')
+                ->get();
     }
 
     public function pluck($fields)
