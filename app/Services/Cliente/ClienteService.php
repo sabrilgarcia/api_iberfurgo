@@ -5,26 +5,21 @@ namespace App\Services\Cliente;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Cliente\FacturaVehiculo;
+use Models\Cliente\Cliente;
 
-class FacturaVehiculoService
+class ClienteService
 {
     public function get($fields)
     {
-        
-        $query = new FacturaVehiculo();
+        $query = new Cliente();
+
         $query = $this->getQuery($fields, $query);
-        
-        return $query->selectRaw("SUM(total) as total, tipo as grupo" )
-                      ->where('fecha','>=',$fields['fecha_factura_desde'])
-                      ->where('fecha','<=',$fields['fecha_factura_hasta'])
-                     ->groupBy('tipo')
-                     ->get();        
+        return $query->with('Delegacion')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new FacturaVehiculo();
+        $query = new Cliente();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -35,7 +30,7 @@ class FacturaVehiculoService
         
         DB::beginTransaction();
         try {
-            $modulo = new FacturaVehiculo();
+            $modulo = new Cliente();
             $modulo->fill($data);
             $modulo->save();
 
@@ -51,7 +46,7 @@ class FacturaVehiculoService
     {
         DB::beginTransaction();
         try {
-            $modulo = FacturaVehiculo::find($id);
+            $modulo = Cliente::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -67,7 +62,7 @@ class FacturaVehiculoService
     {
         DB::beginTransaction();
         try {
-            $modulo = FacturaVehiculo::find($id);
+            $modulo = Cliente::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -81,10 +76,9 @@ class FacturaVehiculoService
         }
     }
 
-    public function getQuery($fields, FacturaVehiculo $query)
+    public function getQuery($fields, Cliente $query)
     {
-        
-        foreach ((new FacturaVehiculo())->getColumnsName() as $column) {
+        foreach ((new Cliente())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

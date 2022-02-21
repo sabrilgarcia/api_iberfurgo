@@ -57,6 +57,10 @@ Route::group(
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
                     
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
+                    
+                    Route::resource('clientes', 'Cliente\ClienteController');
+
+
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
 
