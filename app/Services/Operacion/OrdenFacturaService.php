@@ -17,6 +17,7 @@ class OrdenFacturaService
         return $query->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
                 ->where('operacion__orden.cliente_id', $fields['cliente_id'])
                 ->whereNull('operacion__orden_factura.factura_id')
+                ->where('operacion__orden.momento','CONTRATO')
                 ->get();
     }
 
