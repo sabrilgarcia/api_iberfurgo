@@ -63,6 +63,7 @@ Route::group(
 
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
+                    Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');
 
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
