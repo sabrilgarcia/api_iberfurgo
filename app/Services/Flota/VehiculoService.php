@@ -14,7 +14,7 @@ class VehiculoService
         $query = new Vehiculo();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Version.modelo.marca','Delegacion','vehiculoAdquisicion.proveedor','vehiculoAlquiler','vehiculoSeguro')->get();
+        return $query->with('Version.modelo.marca','Delegacion','vehiculoAdquisicion.proveedor','vehiculoAlquiler','vehiculoSeguro','vehiculoSeguro.proveedor','vehiculoSeguro.formaPago')->get();
     }
 
     public function pluck($fields)
