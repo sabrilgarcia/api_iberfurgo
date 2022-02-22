@@ -15,7 +15,7 @@ class OrdenFacturaController extends ApiController
     public function __construct()
     {
         $this->defaultService = new OrdenFacturaService();
-       
+
         parent::__construct();
     }
 
@@ -28,10 +28,10 @@ class OrdenFacturaController extends ApiController
     {
         try {
             $fields = $request->all();
-            
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-            
+
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -58,10 +58,10 @@ class OrdenFacturaController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
         try {
             $data = $request->all();
-            
+
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -80,7 +80,7 @@ class OrdenFacturaController extends ApiController
     {
         try {
             $ordenFactura = OrdenFactura::with('Orden', 'Factura')->findOrFail($id);
-            
+
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
@@ -121,7 +121,7 @@ class OrdenFacturaController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        } 
+        }
     }
 
     /**
@@ -145,17 +145,18 @@ class OrdenFacturaController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        } 
+        }
     }
 
     public function getContratosSinFactura(Request $fields)
-    {  
+    {
         $query = new OrdenFactura();
 
         return $query->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
                 ->where('operacion__orden.cliente_id', $fields['cliente_id'])
                 ->whereNull('operacion__orden_factura.factura_id')
                 ->where('operacion__orden.momento','CONTRATO')
+                ->where('operacion__orden.alquiler','>',0)
                 ->get();
     }
 }
