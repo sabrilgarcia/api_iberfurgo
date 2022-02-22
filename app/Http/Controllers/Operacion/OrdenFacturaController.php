@@ -7,7 +7,6 @@ use App\Services\Operacion\OrdenFacturaService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Cliente\FacturaVehiculo;
 use Models\Operacion\OrdenFactura;
 
 class OrdenFacturaController extends ApiController
@@ -147,5 +146,16 @@ class OrdenFacturaController extends ApiController
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
         } 
+    }
+
+    public function getContratosSinFactura(Request $fields)
+    {  
+        $query = new OrdenFactura();
+
+        return $query->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
+                ->where('operacion__orden.cliente_id', $fields['cliente_id'])
+                ->whereNull('operacion__orden_factura.factura_id')
+                ->where('operacion__orden.momento','CONTRATO')
+                ->get();
     }
 }
