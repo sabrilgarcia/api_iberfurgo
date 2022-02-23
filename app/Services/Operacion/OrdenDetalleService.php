@@ -5,21 +5,21 @@ namespace App\Services\Operacion;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Operacion\Orden;
+use Models\Operacion\OrdenDetalle;
 
-class OrdenService
+class OrdenDetalleService
 {
     public function get($fields)
     {
-        $query = new Orden();
+        $query = new OrdenDetalle();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('OrdenDetalle.vehiculo')->get();
+        return $query->with('vehiculo')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Orden();
+        $query = new OrdenDetalle();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +30,7 @@ class OrdenService
 
         DB::beginTransaction();
         try {
-            $modulo = new Orden();
+            $modulo = new OrdenDetalle();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +46,7 @@ class OrdenService
     {
         DB::beginTransaction();
         try {
-            $modulo = Orden::find($id);
+            $modulo = OrdenDetalle::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class OrdenService
     {
         DB::beginTransaction();
         try {
-            $modulo = Orden::find($id);
+            $modulo = OrdenDetalle::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class OrdenService
         }
     }
 
-    public function getQuery($fields, Orden $query)
+    public function getQuery($fields, OrdenDetalle $query)
     {
-        foreach ((new Orden())->getColumnsName() as $column) {
+        foreach ((new OrdenDetalle())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

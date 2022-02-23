@@ -22,4 +22,9 @@ class Orden extends Model
         return $this->hasmany(OrdenItem::class);
     }
 
+    public function ordenDetalle()
+    {
+        return $this->hasOne(OrdenDetalle::class, 'id', 'id');
+    }
+
 }

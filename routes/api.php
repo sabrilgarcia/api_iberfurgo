@@ -57,6 +57,7 @@ Route::group(
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
+                    Route::resource('ordenDetalle', 'Operacion\OrdenDetalleController');
 
 
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
