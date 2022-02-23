@@ -6,13 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 
 
-class Factura extends Model
+class FacturaItem extends Model
 {
     use ColumnsNameTrait;
 
     protected $guarded = [];
 
-    protected $table = 'cliente__factura';
+    protected $table = 'cliente__factura_item';
 
     
 
