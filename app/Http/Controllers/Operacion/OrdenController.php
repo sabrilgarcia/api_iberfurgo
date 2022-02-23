@@ -3,18 +3,18 @@
 namespace App\Http\Controllers\Operacion;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Operacion\OrdenFacturaService;
+use App\Services\Operacion\OrdenService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Operacion\OrdenFactura;
+use Models\Operacion\Orden;
 
-class OrdenFacturaController extends ApiController
+class OrdenController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new OrdenFacturaService();
+        $this->defaultService = new OrdenService();
 
         parent::__construct();
     }
@@ -79,7 +79,7 @@ class OrdenFacturaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ordenFactura = OrdenFactura::with('Orden', 'Factura')->findOrFail($id);
+            $ordenFactura = Orden::findOrFail($id);
 
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {
@@ -146,18 +146,5 @@ class OrdenFacturaController extends ApiController
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
         }
-    }
-
-    public function getContratosSinFactura(Request $fields)
-    {
-
-        $query = new OrdenFactura();
-
-        return $query->with('Orden')->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
-                ->where('operacion__orden.cliente_id', $fields['cliente_id'])
-                ->whereNull('operacion__orden_factura.factura_id')
-                ->where('operacion__orden.momento','CONTRATO')
-                ->where('operacion__orden.alquiler','>',0)
-                ->get();
     }
 }

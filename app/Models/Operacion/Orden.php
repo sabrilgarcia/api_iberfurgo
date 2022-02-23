@@ -17,4 +17,9 @@ class Orden extends Model
     {
         return $this->hasOne(OrdenFactura::class);
     }
+
+    public function ordenItem(){
+        return $this->hasmany(OrdenItem::class);
+    }
+
 }

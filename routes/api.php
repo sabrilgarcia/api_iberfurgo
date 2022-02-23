@@ -55,11 +55,13 @@ Route::group(
                     Route::resource('modelos' , 'ModeloController');
 
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
-                    
-                    Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
-                    
-                    Route::resource('clientes', 'Cliente\ClienteController');
+                    Route::resource('ordenItem', 'Operacion\OrdenItemController');
+                    Route::resource('ordenes', 'Operacion\OrdenController');
 
+
+                    Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
+
+                    Route::resource('clientes', 'Cliente\ClienteController');
 
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');

@@ -4,6 +4,7 @@ namespace Models\Operacion;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use GuzzleHttp\Psr7\Request;
 use Models\Cliente\Factura;
 
 class OrdenFactura extends Model
@@ -23,5 +24,9 @@ class OrdenFactura extends Model
     {
         return $this->belongsTo(Orden::class, 'id', 'id');
     }
-    
+
+    public function ordenItem(){
+        return $this->hasmany(OrdenItem::class, 'orden_id', 'id');
+    }
+
 }
