@@ -62,12 +62,16 @@ Route::group(
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
 
                     Route::resource('clientes', 'Cliente\ClienteController');
+                    Route::get('get-clientes-pendientes-facturar', 'Cliente\ClienteController@getClientesPendientesFacturar');
+
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
 
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');
+
+
 
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');

@@ -13,6 +13,8 @@ class OrdenFactura extends Model
 
     protected $guarded = [];
 
+    public $timestamps = false;
+
     protected $table = "operacion__orden_factura";
 
     public function factura()

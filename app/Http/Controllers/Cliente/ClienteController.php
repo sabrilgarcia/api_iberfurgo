@@ -28,10 +28,10 @@ class ClienteController extends ApiController
     {
         try {
             $fields = $request->all();
-            
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-            
+
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -58,10 +58,10 @@ class ClienteController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
         try {
             $data = $request->all();
-           
+
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -80,7 +80,7 @@ class ClienteController extends ApiController
     {
         try {
             $facturaVehiculo = Cliente::with('Delegacion')->findOrFail($id);
-            
+
             return $this->respond(['data' => $facturaVehiculo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
@@ -121,7 +121,7 @@ class ClienteController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        } 
+        }
     }
 
     /**
@@ -145,6 +145,20 @@ class ClienteController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        } 
+        }
+    }
+
+    public function getClientesPendientesFacturar(Request $fields)
+    {
+
+        $query = new Cliente();
+
+        return $query->join('operacion__orden','cliente__cliente_search.id','operacion__orden.cliente_id')
+                ->join('operacion__orden_factura','operacion__orden.id','operacion__orden_factura.id')
+                ->where('cliente__cliente_search.delegacion_id', $fields['delegacion_id'])
+                ->whereNull('operacion__orden_factura.factura_id')
+                ->where('operacion__orden.momento','CONTRATO')
+                ->where('operacion__orden.alquiler','>',0)
+                ->get();
     }
 }

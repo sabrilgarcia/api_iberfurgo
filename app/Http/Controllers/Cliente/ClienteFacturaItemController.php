@@ -15,7 +15,7 @@ class ClienteFacturaItemController extends ApiController
     public function __construct()
     {
         $this->defaultService = new ClienteFacturaItemService();
-       
+
         parent::__construct();
     }
 
@@ -28,10 +28,10 @@ class ClienteFacturaItemController extends ApiController
     {
         try {
             $fields = $request->all();
-            
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-            
+
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -58,10 +58,10 @@ class ClienteFacturaItemController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
         try {
             $data = $request->all();
-           
+
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -80,7 +80,7 @@ class ClienteFacturaItemController extends ApiController
     {
         try {
             $facturaVehiculo = FacturaItem::findOrFail($id);
-            
+
             return $this->respond(['data' => $facturaVehiculo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
@@ -111,14 +111,14 @@ class ClienteFacturaItemController extends ApiController
     {
         try {
             $data = $request->all();
-            
+
 
             $results = $this->defaultService->edit($data, $id);
 
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        } 
+        }
     }
 
     /**
@@ -131,17 +131,13 @@ class ClienteFacturaItemController extends ApiController
     {
         try {
             $data = $request->all();
-            // $this->minRequiredFields = ['usuario_id', 'usuario_ip'];
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
+
 
             $results = $this->defaultService->delete($data, $id);
 
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        } 
+        }
     }
 }

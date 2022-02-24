@@ -111,10 +111,6 @@ class OrdenFacturaController extends ApiController
     {
         try {
             $data = $request->all();
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
 
             $results = $this->defaultService->edit($data, $id);
 
@@ -134,11 +130,7 @@ class OrdenFacturaController extends ApiController
     {
         try {
             $data = $request->all();
-            // $this->minRequiredFields = ['usuario_id', 'usuario_ip'];
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
+
 
             $results = $this->defaultService->delete($data, $id);
 
