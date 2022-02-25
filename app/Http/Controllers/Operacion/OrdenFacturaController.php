@@ -149,7 +149,7 @@ class OrdenFacturaController extends ApiController
                 ->where('operacion__orden.cliente_id', $fields['cliente_id'])
                 ->whereNull('operacion__orden_factura.factura_id')
                 ->where('operacion__orden.momento','CONTRATO')
-                ->where('operacion__orden.alquiler','>',0)
+                //->where('operacion__orden.alquiler','>',0)
                 ->get();
     }
 }
