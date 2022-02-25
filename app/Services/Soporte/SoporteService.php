@@ -5,21 +5,21 @@ namespace App\Services\Soporte;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Soporte\Ticket;
+use Models\Soporte\Soporte;
 
-class TicketService
+class SoporteService
 {
     public function get($fields)
     {
-        $query = new Ticket();
+        $query = new Soporte();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte')->get();
+        return $query->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Ticket();
+        $query = new Soporte();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -27,10 +27,9 @@ class TicketService
 
     public function save($data)
     {
-        
         DB::beginTransaction();
         try {
-            $modulo = new Ticket();
+            $modulo = new Soporte();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +45,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = Soporte::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +61,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = Soporte::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +75,9 @@ class TicketService
         }
     }
 
-    public function getQuery($fields, Ticket $query)
+    public function getQuery($fields, Soporte $query)
     {
-        foreach ((new Ticket())->getColumnsName() as $column) {
+        foreach ((new Soporte())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

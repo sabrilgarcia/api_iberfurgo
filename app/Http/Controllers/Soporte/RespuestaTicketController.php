@@ -3,21 +3,20 @@
 namespace App\Http\Controllers\Soporte;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Soporte\TicketService;
+use App\Services\Soporte\RespuestaTicketService;
 
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Ticket;
+use Models\Soporte\RespuestaTicket;
 
-class TicketController extends ApiController
+class RespuestaTicketController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new TicketService();
-        $this->minRequiredFields = ['titulo','descripcion'];
+        $this->defaultService = new RespuestaTicketService();
         parent::__construct();
     }
 
@@ -43,16 +42,6 @@ class TicketController extends ApiController
     }
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
@@ -63,11 +52,6 @@ class TicketController extends ApiController
         
         try {
             $data = $request->all();
-            // dd($data);
-            // $valid = $this->validateMinFields($data);
-            // if(! $valid) {
-            //     return $this->respondInvalidMinFilterFields();
-            // }
             
             $results = $this->defaultService->save($data);
 
@@ -86,25 +70,14 @@ class TicketController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ticket = Ticket::with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte','RespuestaTicket')->findOrFail($id);
+            $modulo = RespuestaTicket::findOrFail($id);
             
-            return $this->respond(['data' => $ticket]);
+            return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage());
         }
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
     }
 
     /**
@@ -118,10 +91,6 @@ class TicketController extends ApiController
     {
         try {
             $data = $request->all();
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
 
             $results = $this->defaultService->edit($data, $id);
 

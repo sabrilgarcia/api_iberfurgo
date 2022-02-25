@@ -3,21 +3,22 @@
 namespace App\Http\Controllers\Soporte;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Soporte\TicketService;
+use App\Services\Soporte\SoporteService;
 
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Soporte\Ticket;
+use Models\Soporte\Categoria;
+use Models\Soporte\Prioridad;
 
-class TicketController extends ApiController
+class SoporteController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new TicketService();
-        $this->minRequiredFields = ['titulo','descripcion'];
+        $this->defaultService = new SoporteService();
+        $this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
 
@@ -60,14 +61,12 @@ class TicketController extends ApiController
      */
     public function store(Request $request)
     {
-        
         try {
             $data = $request->all();
-            // dd($data);
-            // $valid = $this->validateMinFields($data);
-            // if(! $valid) {
-            //     return $this->respondInvalidMinFilterFields();
-            // }
+            $valid = $this->validateMinFields($data);
+            if(! $valid) {
+                return $this->respondInvalidMinFilterFields();
+            }
             
             $results = $this->defaultService->save($data);
 
@@ -86,9 +85,9 @@ class TicketController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ticket = Ticket::with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte','RespuestaTicket')->findOrFail($id);
+            $modulo = Soporte::findOrFail($id);
             
-            return $this->respond(['data' => $ticket]);
+            return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {

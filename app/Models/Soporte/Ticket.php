@@ -40,6 +40,11 @@ class Ticket extends Model
         return $this->belongsTo(Usuario::class);
     }
 
+    public function soporte()
+    {
+        return $this->belongsTo(Soporte::class);
+    }
+
     public function delegacion()
     {
         return $this->belongsTo(Delegacion::class);
@@ -48,6 +53,11 @@ class Ticket extends Model
     public function delegacionIndice()
     {
         return $this->belongsTo(DelegacionIndice::class);
+    }
+
+    public function RespuestaTicket()
+    {
+        return $this->hasMany(RespuestaTicket::class);
     }
 
 }
