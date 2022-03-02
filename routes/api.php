@@ -36,6 +36,11 @@ Route::group(
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
+                    Route::get('get-tarifa', 'TarifaController@getTarifa');
+                    Route::get('get-tarifa-free-day', 'TarifaController@getTarifaFreeDay');
+                    Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
+                    Route::get('get-familias-vehiculo', 'TipoController@getFamiliasVehiculo');
+
 
                     Route::resource('modulos' , 'Soporte\ModuloController');
                     Route::resource('categorias' , 'Soporte\CategoriaController');
@@ -48,10 +53,11 @@ Route::group(
 
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
+                    Route::resource('vehiculos' , 'Flota\VehiculoController');
+
 
                     Route::resource('menu' , 'Menu\MenuController');
 
-                    Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::resource('versiones' , 'Flota\VersionController');
                     Route::resource('modelos' , 'ModeloController');
 
@@ -66,17 +72,13 @@ Route::group(
                     Route::get('get-clientes-pendientes-facturar', 'Cliente\ClienteController@getClientesPendientesFacturar');
 
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
+                    Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
 
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');
 
-
-
-                    Route::get('get-tarifa', 'TarifaController@getTarifa');
-                    Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
-                    Route::get('get-familias-vehiculo', 'TipoController@getFamiliasVehiculo');
                 }
             );
         }
