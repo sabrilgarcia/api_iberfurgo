@@ -14,7 +14,9 @@ class FacturaSearchService
         $query = new FacturaSearch();
 
         $query = $this->getQuery($fields, $query);
-        return $query->get();
+        return $query->where('fecha','>=',$fields['fecha_factura_desde'])
+                     ->where('fecha','<=',$fields['fecha_factura_hasta'])
+                     ->get();
     }
 
     public function pluck($fields)
