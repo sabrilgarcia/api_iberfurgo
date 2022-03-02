@@ -79,7 +79,7 @@ class FacturaSearchController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $facturaSearch = FacturaSearch::findOrFail($id);
+            $facturaSearch = FacturaSearch::with('Ordenfactura')->findOrFail($id);
 
             return $this->respond(['data' => $facturaSearch]);
         } catch (ModelNotFoundException $e) {
