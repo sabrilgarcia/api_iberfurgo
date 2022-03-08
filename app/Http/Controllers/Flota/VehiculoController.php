@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Flota;
 
 use App\Http\Controllers\ApiController;
+use App\Http\Traits\VehiculosTrait;
 use App\Services\Flota\VehiculoService;
 
 
@@ -10,9 +11,13 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Models\Flota\Vehiculo;
+use Models\Flota\VehiculoSearch;
+use Models\Operacion\OrdenFactura;
+use Models\Tipo;
 
 class VehiculoController extends ApiController
 {
+    use VehiculosTrait;
 
     public function __construct()
     {
@@ -148,5 +153,31 @@ class VehiculoController extends ApiController
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
         }
+    }
+
+    public function estadoVehiculosGrupo(Request $fields)
+    {
+        
+        $vehiculosTotales = $this->getNumVehiculos('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
+        $vehiculosAlquilados = $this->getNumVehiculosAlquilados('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
+
+        $tipos = Tipo::all();
+        
+        $arrResultado = null;
+
+
+        foreach($tipos as $tipo) {
+            $totalGrupo = $this->getNumVehiculos('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id'], $tipo->tipoId);
+            $AlquiladosGrupo = $this->getNumVehiculosAlquilados('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id'], $tipo->tipoId);
+            $arrResultado[$tipo->tipoId]['total'] = $totalGrupo;
+            $arrResultado[$tipo->tipoId]['alquilados'] = $AlquiladosGrupo;
+            $arrResultado[$tipo->tipoId]['noAlquilados'] =  $totalGrupo - $AlquiladosGrupo;
+        }
+
+        $arrResultado['todos']['total'] = $vehiculosTotales;
+        $arrResultado['todos']['alquilados'] = $vehiculosAlquilados;
+        $arrResultado['todos']['noAlquilados'] = $vehiculosTotales - $vehiculosAlquilados;
+
+        return $arrResultado;
     }
 }

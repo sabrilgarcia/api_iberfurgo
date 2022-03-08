@@ -142,14 +142,13 @@ class OrdenFacturaController extends ApiController
 
     public function getContratosSinFactura(Request $fields)
     {
-
         $query = new OrdenFactura();
 
-        return $query->with('Orden')->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
+        return $query->with('Orden')
+                ->join('operacion__orden','operacion__orden_factura.id','operacion__orden.id')
                 ->where('operacion__orden.cliente_id', $fields['cliente_id'])
                 ->whereNull('operacion__orden_factura.factura_id')
                 ->where('operacion__orden.momento','CONTRATO')
-                //->where('operacion__orden.alquiler','>',0)
                 ->get();
     }
 }

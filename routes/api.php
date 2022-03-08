@@ -54,6 +54,7 @@ Route::group(
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
+                    Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
 
 
                     Route::resource('menu' , 'Menu\MenuController');
