@@ -62,11 +62,6 @@ class CombustibleController extends ApiController
         
         try {
             $data = $request->all();
-            // dd($data);
-            // $valid = $this->validateMinFields($data);
-            // if(! $valid) {
-            //     return $this->respondInvalidMinFilterFields();
-            // }
             
             $results = $this->defaultService->save($data);
 
