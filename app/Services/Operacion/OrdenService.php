@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Services\Soporte;
+namespace App\Services\Operacion;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Soporte\Ticket;
+use Models\Operacion\Orden;
 
-class TicketService
+class OrdenService
 {
     public function get($fields)
     {
-        $query = new Ticket();
+        $query = new Orden();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte')->get();
+        return $query->with('OrdenDetalle.vehiculo')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Ticket();
+        $query = new Orden();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -27,10 +27,10 @@ class TicketService
 
     public function save($data)
     {
-        
+
         DB::beginTransaction();
         try {
-            $modulo = new Ticket();
+            $modulo = new Orden();
             $modulo->fill($data);
             $modulo->save();
 
@@ -42,11 +42,11 @@ class TicketService
         return $modulo;
     }
 
-    public function edit($data, $id) 
+    public function edit($data, $id)
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = Orden::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = Orden::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class TicketService
         }
     }
 
-    public function getQuery($fields, Ticket $query)
+    public function getQuery($fields, Orden $query)
     {
-        foreach ((new Ticket())->getColumnsName() as $column) {
+        foreach ((new Orden())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }
@@ -97,4 +97,6 @@ class TicketService
 
         return $query;
     }
+
+
 }

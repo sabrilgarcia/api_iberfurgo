@@ -1,29 +1,24 @@
 <?php
 
-namespace App\Http\Controllers\Flota;
+namespace App\Http\Controllers\Soporte;
 
 use App\Http\Controllers\ApiController;
-use App\Http\Traits\VehiculosTrait;
-use App\Services\Flota\VehiculoService;
+use App\Services\Soporte\SoporteService;
 
 
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Flota\Vehiculo;
-use Models\Flota\VehiculoSearch;
-use Models\Operacion\OrdenFactura;
-use Models\Tipo;
+use Models\Soporte\Categoria;
+use Models\Soporte\Prioridad;
 
-class VehiculoController extends ApiController
+class SoporteController extends ApiController
 {
-    use VehiculosTrait;
 
     public function __construct()
     {
-
-        $this->defaultService = new VehiculoService();
-        //$this->minRequiredFields = ['id','nombre'];
+        $this->defaultService = new SoporteService();
+        $this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
 
@@ -36,10 +31,10 @@ class VehiculoController extends ApiController
     {
         try {
             $fields = $request->all();
-
+            
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-
+            
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -68,11 +63,11 @@ class VehiculoController extends ApiController
     {
         try {
             $data = $request->all();
-            //$valid = $this->validateMinFields($data);
-            //if(! $valid) {
-            //    return $this->respondInvalidMinFilterFields();
-            //}
-
+            $valid = $this->validateMinFields($data);
+            if(! $valid) {
+                return $this->respondInvalidMinFilterFields();
+            }
+            
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -90,10 +85,9 @@ class VehiculoController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            //$modulo = Oferta::findOrFail($id);
-            //$modulo = OfertaVehiculo::with('Marca','Modelo')->findOrFail($id);
-            $vehiculo = Vehiculo::with('Version.modelo.marca','Delegacion','vehiculoAdquisicion.proveedor','vehiculoAlquiler','vehiculoSeguro','vehiculoSeguro.proveedor','vehiculoSeguro.formaPago')->findOrFail($id);
-            return $this->respond(['data' => $vehiculo]);
+            $modulo = Soporte::findOrFail($id);
+            
+            return $this->respond(['data' => $modulo]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {
@@ -123,12 +117,17 @@ class VehiculoController extends ApiController
     {
         try {
             $data = $request->all();
+            $valid = $this->validateMinFields($data);
+            if(! $valid) {
+                return $this->respondInvalidMinFilterFields();
+            }
+
             $results = $this->defaultService->edit($data, $id);
 
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        }
+        } 
     }
 
     /**
@@ -152,32 +151,6 @@ class VehiculoController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        }
-    }
-
-    public function estadoVehiculosGrupo(Request $fields)
-    {
-        
-        $vehiculosTotales = $this->getNumVehiculos('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
-        $vehiculosAlquilados = $this->getNumVehiculosAlquilados('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
-
-        $tipos = Tipo::all();
-        
-        $arrResultado = null;
-
-
-        foreach($tipos as $tipo) {
-            $totalGrupo = $this->getNumVehiculos('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id'], $tipo->tipoId);
-            $AlquiladosGrupo = $this->getNumVehiculosAlquilados('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id'], $tipo->tipoId);
-            $arrResultado[$tipo->tipoId]['total'] = $totalGrupo;
-            $arrResultado[$tipo->tipoId]['alquilados'] = $AlquiladosGrupo;
-            $arrResultado[$tipo->tipoId]['noAlquilados'] =  $totalGrupo - $AlquiladosGrupo;
-        }
-
-        $arrResultado['todos']['total'] = $vehiculosTotales;
-        $arrResultado['todos']['alquilados'] = $vehiculosAlquilados;
-        $arrResultado['todos']['noAlquilados'] = $vehiculosTotales - $vehiculosAlquilados;
-
-        return $arrResultado;
+        } 
     }
 }

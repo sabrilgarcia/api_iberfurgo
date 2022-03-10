@@ -86,7 +86,7 @@ class TicketController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ticket = Ticket::with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice')->findOrFail($id);
+            $ticket = Ticket::with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte','RespuestaTicket')->findOrFail($id);
             
             return $this->respond(['data' => $ticket]);
         } catch (ModelNotFoundException $e) {

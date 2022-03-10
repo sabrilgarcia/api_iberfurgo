@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Services\Soporte;
+namespace App\Services\Operacion;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Soporte\Ticket;
+use Models\Operacion\OrdenFactura;
 
-class TicketService
+class OrdenFacturaService
 {
     public function get($fields)
     {
-        $query = new Ticket();
+        $query = new OrdenFactura();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte')->get();
+        return $query->with('Orden')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Ticket();
+        $query = new OrdenFactura();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +30,7 @@ class TicketService
         
         DB::beginTransaction();
         try {
-            $modulo = new Ticket();
+            $modulo = new OrdenFactura();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +46,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = OrdenFactura::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = OrdenFactura::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class TicketService
         }
     }
 
-    public function getQuery($fields, Ticket $query)
+    public function getQuery($fields, OrdenFactura $query)
     {
-        foreach ((new Ticket())->getColumnsName() as $column) {
+        foreach ((new OrdenFactura())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }
@@ -97,4 +97,6 @@ class TicketService
 
         return $query;
     }
+
+    
 }

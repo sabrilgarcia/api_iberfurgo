@@ -1,25 +1,30 @@
 <?php
 
-namespace App\Services\Soporte;
+namespace App\Services\Cliente;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Soporte\Ticket;
+use Models\Cliente\FacturaVehiculo;
 
-class TicketService
+class FacturaVehiculoService
 {
     public function get($fields)
     {
-        $query = new Ticket();
-
+        
+        $query = new FacturaVehiculo();
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modulo','Categoria','Prioridad','Estado','Usuario','Delegacion','DelegacionIndice','Soporte')->get();
+        
+        return $query->selectRaw("SUM(total) as total, tipo as grupo" )
+                      ->where('fecha','>=',$fields['fecha_factura_desde'])
+                      ->where('fecha','<=',$fields['fecha_factura_hasta'])
+                     ->groupBy('tipo')
+                     ->get();        
     }
 
     public function pluck($fields)
     {
-        $query = new Ticket();
+        $query = new FacturaVehiculo();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +35,7 @@ class TicketService
         
         DB::beginTransaction();
         try {
-            $modulo = new Ticket();
+            $modulo = new FacturaVehiculo();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +51,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = FacturaVehiculo::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +67,7 @@ class TicketService
     {
         DB::beginTransaction();
         try {
-            $modulo = Ticket::find($id);
+            $modulo = FacturaVehiculo::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +81,10 @@ class TicketService
         }
     }
 
-    public function getQuery($fields, Ticket $query)
+    public function getQuery($fields, FacturaVehiculo $query)
     {
-        foreach ((new Ticket())->getColumnsName() as $column) {
+        
+        foreach ((new FacturaVehiculo())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

@@ -1,18 +1,18 @@
 <?php
 
-namespace Models\Combustible;
+namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-class Combustible extends Model
+
+
+class Factura extends Model
 {
     use ColumnsNameTrait;
 
-    public $timestamps = false;
-    
     protected $guarded = [];
 
-    protected $table = "flota__combustible";
+    protected $table = 'cliente__factura';
 
     
 

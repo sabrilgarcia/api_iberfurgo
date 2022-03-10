@@ -4,6 +4,7 @@ namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Delegacion;
 use Models\Ofertas\Oferta;
 
 class Cliente extends Model
@@ -15,6 +16,11 @@ class Cliente extends Model
     public function ofertas()
     {
         return $this->hasMany(Oferta::class);
+    }
+
+    public function delegacion()
+    {
+        return $this->belongsTo(Delegacion::class);
     }
 
 }
