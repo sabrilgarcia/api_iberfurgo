@@ -62,11 +62,6 @@ class CombustibleController extends ApiController
         
         try {
             $data = $request->all();
-            // dd($data);
-            // $valid = $this->validateMinFields($data);
-            // if(! $valid) {
-            //     return $this->respondInvalidMinFilterFields();
-            // }
             
             $results = $this->defaultService->save($data);
 
@@ -117,11 +112,7 @@ class CombustibleController extends ApiController
     {
         try {
             $data = $request->all();
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
-
+           
             $results = $this->defaultService->edit($data, $id);
 
             return $this->respond(['data' => $results]);
@@ -140,11 +131,6 @@ class CombustibleController extends ApiController
     {
         try {
             $data = $request->all();
-            // $this->minRequiredFields = ['usuario_id', 'usuario_ip'];
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
 
             $results = $this->defaultService->delete($data, $id);
 
