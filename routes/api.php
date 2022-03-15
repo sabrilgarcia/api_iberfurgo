@@ -56,7 +56,6 @@ Route::group(
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
 
-
                     Route::resource('menu' , 'Menu\MenuController');
 
                     Route::resource('versiones' , 'Flota\VersionController');
@@ -76,6 +75,8 @@ Route::group(
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
+                    
+                    Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
 
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
