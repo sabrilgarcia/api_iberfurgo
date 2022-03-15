@@ -50,12 +50,14 @@ Route::group(
                     Route::resource('respuesta-ticket' , 'Soporte\RespuestaTicketController');
 
                     Route::resource('combustible' , 'Combustible\CombustibleController');
-                    
+
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
 
+                    Route::resource('vehiculosSeguros' , 'Flota\VehiculoSeguroController');
+                    Route::resource('formasPago' , 'Maestro\FormaPagoController');
 
                     Route::resource('menu' , 'Menu\MenuController');
 

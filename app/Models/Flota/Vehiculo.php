@@ -6,7 +6,6 @@ use App\Http\Traits\ColumnsNameTrait;
 use Illuminate\Database\Eloquent\Model;
 use Models\Delegacion;
 use Models\Franquicia\FranquiciaContrato;
-use Models\Version;
 
 class Vehiculo extends Model
 {

@@ -20,4 +20,8 @@ class VehiculoSeguro extends Model
     public function formaPago(){
         return $this->belongsTo(FormaPago::class);
     }
+
+    public function vehiculo(){
+        return $this->belongsTo(Vehiculo::class);
+    }
 }
