@@ -1,18 +1,21 @@
 <?php
 
-namespace Models;
+namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Flota\Modelo;
 use Models\Flota\Vehiculo;
-use Models\Modelo;
-use Models\Tipo;
+
 
 class Version extends Model
 {
     use ColumnsNameTrait;
 
     protected $table = 'flota__version';
+
+    protected $guarded=[];
+    public $timestamps = false;
 
     public function modelos()
     {

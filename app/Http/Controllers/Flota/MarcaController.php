@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Flota;
 
-use Models\Marca;
-use App\Services\MarcaService;
-
+use App\Http\Controllers\ApiController;
+use App\Services\Flota\MarcaService;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Flota\Marca;
 
 class MarcaController extends ApiController
 {
@@ -20,6 +21,7 @@ class MarcaController extends ApiController
     {
         try {
             $fields = $request->all();
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
 
@@ -31,16 +33,100 @@ class MarcaController extends ApiController
         return $results;
     }
 
-    public function show(Request $request, $marca_id){
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
+    }
 
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
         try {
-            //$delegacion = Delegacion::findOrFail($delegacion_id);
-            $marca = Marca::where('id', $marca_id)->firstOrFail();
-                return $marca;
-        } catch(ModelNotFoundException $e){
-            return $this->respondNotFound('Resource Marca with id: ' . $marca_id . ' not found.');
-        } catch (\Exception $e) {
+            $data = $request->all();
+            $results = $this->defaultService->save($data);
+
+            return $this->respond(['data' => $results]);
+        } catch (Exception $e) {
+            return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
+        }
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function show(Request $request, $id)
+    {
+        try {
+            //$modulo = Oferta::findOrFail($id);
+            $marca = Marca::findOrFail($id);
+            return $this->respond(['data' => $marca]);
+        } catch (ModelNotFoundException $e) {
+            return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
+        } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage());
+        }
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        try {
+            $data = $request->all();
+            $results = $this->defaultService->edit($data, $id);
+
+            return $this->respond(['data' => $results]);
+        } catch (Exception $e) {
+            return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
+        }
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy(Request $request, $id)
+    {
+        try {
+            $data = $request->all();
+
+
+            $results = $this->defaultService->delete($data, $id);
+
+            return $this->respond(['data' => $results]);
+        } catch (Exception $e) {
+            return $this->respondInternalError($e->getTraceAsString());
         }
     }
 }

@@ -60,8 +60,8 @@ Route::group(
                     Route::resource('menu' , 'Menu\MenuController');
 
                     Route::resource('versiones' , 'Flota\VersionController');
-                    Route::resource('modelos' , 'ModeloController');
-                    Route::resource('marcas' , 'MarcaController');
+                    Route::resource('modelos' , 'Flota\ModeloController');
+                    Route::resource('marcas' , 'Flota\MarcaController');
 
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');

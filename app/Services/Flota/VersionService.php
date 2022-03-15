@@ -5,7 +5,7 @@ namespace App\Services\Flota;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Version;
+use Models\Flota\Version;
 
 class VersionService
 {

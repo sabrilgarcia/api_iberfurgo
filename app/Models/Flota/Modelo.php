@@ -1,18 +1,21 @@
 <?php
 
-namespace Models;
+namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Marca;
+
 use Models\Ofertas\OfertaVehiculo;
-use Models\Tipo;
+
 
 class Modelo extends Model
 {
     use ColumnsNameTrait;
 
     protected $table = 'flota__modelo';
+
+    protected $guarded=[];
+    public $timestamps = false;
 
     public function marcas()
     {
