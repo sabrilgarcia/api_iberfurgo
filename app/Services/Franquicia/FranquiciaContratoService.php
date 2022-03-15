@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Services\Flota;
+namespace App\Services\Franquicia;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Flota\Vehiculo;
+use Models\Franquicia\FranquiciaContrato;
 
-class VehiculoService
+class FranquiciaContratoService
 {
     public function get($fields)
     {
-        $query = new Vehiculo();
+        $query = new FranquiciaContrato();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Version.modelo.marca','Delegacion.empresa','vehiculoAdquisicion.proveedor','vehiculoAlquiler','vehiculoSeguro','vehiculoSeguro.proveedor','vehiculoSeguro.formaPago','franquiciaContrato')->get();
+        return $query->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Vehiculo();
+        $query = new FranquiciaContrato();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -27,9 +27,10 @@ class VehiculoService
 
     public function save($data)
     {
+        
         DB::beginTransaction();
         try {
-            $modulo = new Vehiculo();
+            $modulo = new FranquiciaContrato();
             $modulo->fill($data);
             $modulo->save();
 
@@ -41,11 +42,11 @@ class VehiculoService
         return $modulo;
     }
 
-    public function edit($data, $id)
+    public function edit($data, $id) 
     {
         DB::beginTransaction();
         try {
-            $modulo = Vehiculo::find($id);
+            $modulo = FranquiciaContrato::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -61,7 +62,7 @@ class VehiculoService
     {
         DB::beginTransaction();
         try {
-            $modulo = Vehiculo::find($id);
+            $modulo = FranquiciaContrato::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -75,10 +76,9 @@ class VehiculoService
         }
     }
 
-    public function getQuery($fields, Vehiculo $query)
+    public function getQuery($fields, FranquiciaContrato $query)
     {
-
-        foreach ((new Vehiculo())->getColumnsName() as $column) {
+        foreach ((new FranquiciaContrato())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

@@ -5,6 +5,7 @@ namespace Models\Flota;
 use App\Http\Traits\ColumnsNameTrait;
 use Illuminate\Database\Eloquent\Model;
 use Models\Delegacion;
+use Models\Franquicia\FranquiciaContrato;
 use Models\Version;
 
 class Vehiculo extends Model
@@ -37,5 +38,11 @@ class Vehiculo extends Model
     {
         return $this->hasMany(VehiculoSeguro::class)->where('tipo','SEGURO');
     }
+
+    public function franquiciaContrato()
+    {
+        return $this->hasMany(FranquiciaContrato::class);
+    }
+
 
 }
