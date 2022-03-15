@@ -77,6 +77,8 @@ Route::group(
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
 
+                    Route::resource('tipoProveedor' , 'Proveedor\TipoProveedorController');
+                    Route::resource('proveedor' , 'Proveedor\ProveedorController');
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');

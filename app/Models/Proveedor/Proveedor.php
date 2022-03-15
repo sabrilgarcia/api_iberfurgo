@@ -11,6 +11,9 @@ class Proveedor extends Model
 
     protected $table = 'proveedor__proveedor';
 
-
+    public function tipoProveedor()
+    {
+        return $this->belongsTo(tipoProveedor::class);
+    }
 
 }
