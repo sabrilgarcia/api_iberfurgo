@@ -18,7 +18,7 @@ class Proveedor extends Model
 
     public function tipoProveedor()
     {
-        return $this->belongsTo(tipoProveedor::class);
+        return $this->belongsTo(TipoProveedor::class);
     }
 
     public function delegacion()
