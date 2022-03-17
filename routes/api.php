@@ -62,6 +62,7 @@ Route::group(
                     Route::resource('menu' , 'Menu\MenuController');
 
                     Route::resource('versiones' , 'Flota\VersionController');
+                    Route::resource('versionesCaracteristicas' , 'Flota\VersionCaracteristicasController');
                     Route::resource('modelos' , 'Flota\ModeloController');
                     Route::resource('marcas' , 'Flota\MarcaController');
 

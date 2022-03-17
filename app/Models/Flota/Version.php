@@ -30,4 +30,9 @@ class Version extends Model
         return $this->hasMany(Vehiculo::class);
     }
 
+    public function versionCaracteristicas()
+    {
+        return $this->belongsTo(VersionCaracteristicas::class, 'id', 'id');
+    }
+
 }
