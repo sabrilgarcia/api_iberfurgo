@@ -14,7 +14,7 @@ class VersionService
         $query = new Version();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modelo','Modelo.marca','VersionCaracteristicas')->get();
+        return $query->with('Modelo','Modelo.marca','VersionCaracteristicas.combustible')->get();
     }
 
     public function pluck($fields)

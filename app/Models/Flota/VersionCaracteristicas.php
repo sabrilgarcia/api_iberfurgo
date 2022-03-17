@@ -4,8 +4,7 @@ namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-
-
+use Models\Combustible\Combustible;
 
 class VersionCaracteristicas extends Model
 {
@@ -17,8 +16,8 @@ class VersionCaracteristicas extends Model
 
     public $timestamps = false;
 
-    public function version(){
-        return $this->belongsTo(Version::class,'id', 'id');
+    public function combustible(){
+        return $this->belongsTo(Combustible::class);
     }
 
 }
