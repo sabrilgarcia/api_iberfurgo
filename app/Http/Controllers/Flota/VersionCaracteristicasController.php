@@ -3,21 +3,19 @@
 namespace App\Http\Controllers\Flota;
 
 use App\Http\Controllers\ApiController;
-use App\Services\Flota\VersionService;
-
-
+use App\Services\Flota\VersionCaracteristicasService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Flota\Version;
+use Models\Flota\VersionCaracteristicas;
 
-class VersionController extends ApiController
+class VersionCaracteristicasController extends ApiController
 {
 
     public function __construct()
     {
 
-        $this->defaultService = new VersionService();
+        $this->defaultService = new VersionCaracteristicasService();
         //$this->minRequiredFields = ['id','nombre'];
         parent::__construct();
     }
@@ -86,7 +84,7 @@ class VersionController extends ApiController
     {
         try {
             //$modulo = Oferta::findOrFail($id);
-            $version = Version::with('Modelo','Modelo.marca','VersionCaracteristicas')->findOrFail($id);
+            $version = VersionCaracteristicas::findOrFail($id);
             return $this->respond(['data' => $version]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
