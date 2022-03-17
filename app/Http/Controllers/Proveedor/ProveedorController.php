@@ -78,7 +78,7 @@ class ProveedorController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ticket = Proveedor::with('tipoProveedor')->findOrFail($id);
+            $ticket = Proveedor::with('tipoProveedor', 'delegacion')->findOrFail($id);
             
             return $this->respond(['data' => $ticket]);
         } catch (ModelNotFoundException $e) {

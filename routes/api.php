@@ -79,7 +79,7 @@ Route::group(
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
 
-                    Route::resource('tipoProveedor' , 'Proveedor\TipoProveedorController');
+                    Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
