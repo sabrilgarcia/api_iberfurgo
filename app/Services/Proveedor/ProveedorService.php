@@ -14,7 +14,7 @@ class ProveedorService
         $query = new Proveedor();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('tipoProveedor')->get();
+        return $query->with('tipoProveedor', 'delegacion')->get();
     }
 
     public function pluck($fields)

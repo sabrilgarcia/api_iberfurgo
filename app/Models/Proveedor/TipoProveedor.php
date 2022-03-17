@@ -9,6 +9,8 @@ class TipoProveedor extends Model
 {
     use ColumnsNameTrait;
 
+    protected $guarded = [];
+    
     protected $table = 'proveedor__tipo_proveedor';
 
 }
