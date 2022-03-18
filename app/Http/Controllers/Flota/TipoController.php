@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Models\Tipo;
-use Models\VersionCaracteristicas;
 use App\Services\TipoService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
@@ -11,6 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Models\Flota\Version as FlotaVersion;
+use Models\Flota\VersionCaracteristicas;
 
 class TipoController extends ApiController
 {
