@@ -66,6 +66,8 @@ Route::group(
                     Route::resource('modelos' , 'Flota\ModeloController');
                     Route::resource('marcas' , 'Flota\MarcaController');
 
+                    Route::resource('reservasWeb' , 'Reserva\ReservaWebController');
+
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
