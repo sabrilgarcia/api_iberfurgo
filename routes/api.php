@@ -32,6 +32,7 @@ Route::group(
                     Route::resource('flota-tipo', TipoController::class);
                     Route::resource('maestro-delegacion', DelegacionController::class);
                     Route::resource('maestro-delegacion-datos-web', DelegacionDatosWebController::class);
+                    Route::resource('maestro-provincia-datos-web', 'Maestro\ProvinciaDatosWebController');
                     Route::resource('maestro-tarifa', TarifaController::class);
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
