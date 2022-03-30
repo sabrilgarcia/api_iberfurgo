@@ -15,7 +15,7 @@ class ClienteFacturaController extends ApiController
     public function __construct()
     {
         $this->defaultService = new ClienteFacturaService();
-       
+
         parent::__construct();
     }
 
@@ -28,10 +28,10 @@ class ClienteFacturaController extends ApiController
     {
         try {
             $fields = $request->all();
-            
+
             $method = isset($fields['valuePluck']) ? 'pluck' : 'get';
             $results = $this->defaultService->$method($fields);
-            
+
             return $this->respond(['data' => $results]);
         } catch(\Exception $e){
             return $this->respondInternalError($e->getTraceAsString());
@@ -58,10 +58,10 @@ class ClienteFacturaController extends ApiController
      */
     public function store(Request $request)
     {
-        
+
         try {
             $data = $request->all();
-           
+
             $results = $this->defaultService->save($data);
 
             return $this->respond(['data' => $results]);
@@ -79,9 +79,8 @@ class ClienteFacturaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $facturaVehiculo = Factura::findOrFail($id);
-            
-            return $this->respond(['data' => $facturaVehiculo]);
+            $facturas = Factura::with('Delegacion','Cliente','FormaPago','OrdenFactura.Orden.OrdenDetalle.Vehiculo')->findOrFail($id);
+            return $this->respond(['data' => $facturas]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');
         } catch (Exception $e) {
@@ -111,14 +110,14 @@ class ClienteFacturaController extends ApiController
     {
         try {
             $data = $request->all();
-            
+
 
             $results = $this->defaultService->edit($data, $id);
 
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage() . $e->getTraceAsString());
-        } 
+        }
     }
 
     /**
@@ -142,6 +141,6 @@ class ClienteFacturaController extends ApiController
             return $this->respond(['data' => $results]);
         } catch (Exception $e) {
             return $this->respondInternalError($e->getTraceAsString());
-        } 
+        }
     }
 }
