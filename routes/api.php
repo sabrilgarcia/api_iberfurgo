@@ -86,6 +86,7 @@ Route::group(
                     Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');
                     Route::resource('proveedoresFactura' , 'Proveedor\ProveedorFacturaController');
+                    Route::resource('proveedoresPagos' , 'Proveedor\ProveedorPagoController');
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');
