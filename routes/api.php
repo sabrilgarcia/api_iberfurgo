@@ -34,6 +34,7 @@ Route::group(
                     Route::resource('maestro-delegacion-datos-web', DelegacionDatosWebController::class);
                     Route::resource('maestro-provincia-datos-web', 'Maestro\ProvinciaDatosWebController');
                     Route::resource('maestro-tarifa', TarifaController::class);
+                    Route::resource('bancos', 'Maestro\BancoController');
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
@@ -73,6 +74,7 @@ Route::group(
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
                     Route::resource('ordenDetalle', 'Operacion\OrdenDetalleController');
+                    
 
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
 
@@ -82,6 +84,7 @@ Route::group(
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
+                    Route::resource('cobros', 'Cliente\CobroController');
 
                     Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');

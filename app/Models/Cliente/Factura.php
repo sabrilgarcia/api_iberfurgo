@@ -14,6 +14,10 @@ class Factura extends Model
 
     protected $table = 'cliente__factura';
 
+    public function Cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
     
 
 }
