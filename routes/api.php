@@ -57,6 +57,7 @@ Route::group(
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
+                    Route::get('estadoVehiculo' , 'Flota\VehiculoController@estadoVehiculo');
 
                     Route::resource('vehiculosSeguros' , 'Flota\VehiculoSeguroController');
                     Route::resource('formasPago' , 'Maestro\FormaPagoController');
@@ -88,6 +89,8 @@ Route::group(
 
                     Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');
+                    Route::resource('proveedoresFactura' , 'Proveedor\ProveedorFacturaController');
+                    Route::resource('proveedoresPagos' , 'Proveedor\ProveedorPagoController');
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');

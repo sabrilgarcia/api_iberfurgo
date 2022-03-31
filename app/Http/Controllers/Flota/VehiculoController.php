@@ -178,4 +178,9 @@ class VehiculoController extends ApiController
 
         return $arrResultado;
     }
+
+    public function estadoVehiculo(Request $fields){
+        return $this->getEstadoVehiculo($fields['id'],$fields['fecha']);
+
+    }
 }

@@ -130,13 +130,7 @@ class CobroController extends ApiController
     public function destroy(Request $request, $id)
     {
         try {
-            $data = $request->all();
-            // $this->minRequiredFields = ['usuario_id', 'usuario_ip'];
-            $valid = $this->validateMinFields($data);
-            if(! $valid) {
-                return $this->respondInvalidMinFilterFields();
-            }
-
+            $data = $request->all(); 
             $results = $this->defaultService->delete($data, $id);
 
             return $this->respond(['data' => $results]);

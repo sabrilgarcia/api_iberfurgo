@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Services\Cliente;
+namespace App\Services\Proveedor;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Cliente\Factura;
+use Models\Proveedor\ProveedorFactura;
 
-class ClienteFacturaService
+class ProveedorFacturaService
 {
     public function get($fields)
     {
-        $query = new Factura();
+        $query = new ProveedorFactura();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Delegacion','Cliente','FormaPago','OrdenFactura.Orden.OrdenDetalle.Vehiculo')->get();
+        return $query->with('Proveedor', 'Delegacion')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Factura();
+        $query = new ProveedorFactura();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +30,7 @@ class ClienteFacturaService
 
         DB::beginTransaction();
         try {
-            $modulo = new Factura();
+            $modulo = new ProveedorFactura();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +46,7 @@ class ClienteFacturaService
     {
         DB::beginTransaction();
         try {
-            $modulo = Factura::find($id);
+            $modulo = ProveedorFactura::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class ClienteFacturaService
     {
         DB::beginTransaction();
         try {
-            $modulo = Factura::find($id);
+            $modulo = ProveedorFactura::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class ClienteFacturaService
         }
     }
 
-    public function getQuery($fields, Factura $query)
+    public function getQuery($fields, ProveedorFactura $query)
     {
-        foreach ((new Factura())->getColumnsName() as $column) {
+        foreach ((new ProveedorFactura())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }
