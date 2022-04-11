@@ -16,7 +16,7 @@ class Factura extends Model
 
     protected $table = 'cliente__factura';
 
-    protected $appends = ['Base','Impuestos','Total'];
+    protected $appends = ['NombreCliente','Base','Impuestos','Total','Cobrado','PendienteCobro'];
 
     public function Delegacion()
     {
@@ -42,16 +42,38 @@ class Factura extends Model
         return $this->hasMany(FacturaItem::class);
     }
 
-    public function getBaseAttribute()
-    {
+    public function Cobros(){
+        return $this->hasMany(Cobro::class);
+    }
+
+    public function getNombreClienteAttribute(){
+        return $this->Cliente->nombre;
+    }
+
+    public function getBaseAttribute(){
         return number_format($this->FacturaItems->sum('BaseTotal'), 2, '.', '');
     }
-    public function getImpuestosAttribute()
-    {
+
+    public function getImpuestosAttribute(){
         return number_format($this->FacturaItems->sum('Impuestos'), 2, '.', '');
     }
-    public function getTotalAttribute()
-    {
+
+    public function getTotalAttribute(){
         return number_format($this->FacturaItems->sum('Total'), 2, '.', '');
+    }
+
+    public function getCobradoAttribute(){
+            return number_format($this->Cobros->sum('importe'), 2, '.', '');
+    }
+
+    public function getPendienteCobroAttribute(){
+
+        //return $this->Total-$this->Cobrado;
+        $alquiler=0;
+        if(isset($this->OrdenFactura->Orden->alquiler)){
+            $alquiler=$this->OrdenFactura->Orden->alquiler;
+        }
+
+        return number_format($this->Total-$this->Cobrado-$alquiler, 2, '.', '');
     }
 }

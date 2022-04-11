@@ -4,18 +4,13 @@ namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
-use Models\Operacion\OrdenFactura;
 
-class FacturaSearch extends Model
+
+class Cobro extends Model
 {
     use ColumnsNameTrait;
 
     protected $guarded = [];
 
-    protected $table = 'cliente__factura_search';
-
-
-
-
+    protected $table = 'cliente__cobro';
 }
