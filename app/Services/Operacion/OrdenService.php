@@ -14,7 +14,7 @@ class OrdenService
         $query = new Orden();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('OrdenDetalle.vehiculo','Cliente','Delegacion')->orderBy('id','DESC')->get();
+        return $query->with('OrdenDetalle.vehiculo','Cliente','Delegacion')->get();
     }
 
     public function pluck($fields)
