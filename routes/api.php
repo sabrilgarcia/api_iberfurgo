@@ -82,6 +82,7 @@ Route::group(
                     Route::get('get-clientes-pendientes-facturar', 'Cliente\ClienteController@getClientesPendientesFacturar');
 
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
+                    Route::get('numFacturas', 'Cliente\ClienteFacturaController@getNumFacturas');
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
                     

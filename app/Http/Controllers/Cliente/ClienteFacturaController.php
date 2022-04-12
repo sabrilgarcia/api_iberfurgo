@@ -40,6 +40,20 @@ class ClienteFacturaController extends ApiController
         return $results;
     }
 
+    public function getNumFacturas(Request $request){
+        try {
+            $fields = $request->all();
+
+            $method = 'count';
+            $results = $this->defaultService->$method($fields);
+
+            return $this->respond(['data' => $results]);
+        } catch(\Exception $e){
+            return $this->respondInternalError($e->getTraceAsString());
+        }
+
+        return $results;
+    }
     /**
      * Show the form for creating a new resource.
      *
