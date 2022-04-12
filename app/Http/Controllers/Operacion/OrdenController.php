@@ -79,7 +79,7 @@ class OrdenController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ordenFactura = Orden::findOrFail($id);
+            $ordenFactura = Orden::with('OrdenDetalle.vehiculo','Cliente','Delegacion')->findOrFail($id);
 
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {

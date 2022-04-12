@@ -4,6 +4,8 @@ namespace Models\Operacion;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Cliente\Cliente;
+use Models\Delegacion;
 
 class Orden extends Model
 {
@@ -25,6 +27,16 @@ class Orden extends Model
     public function ordenDetalle()
     {
         return $this->hasOne(OrdenDetalle::class, 'id', 'id');
+    }
+
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class);
+    }
+
+    public function delegacion()
+    {
+        return $this->belongsTo(Delegacion::class);
     }
 
 }
