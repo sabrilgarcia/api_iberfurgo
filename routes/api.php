@@ -50,17 +50,26 @@ Route::group(
                     Route::resource('respuesta-ticket' , 'Soporte\RespuestaTicketController');
 
                     Route::resource('combustible' , 'Combustible\CombustibleController');
-                    
+
                     Route::resource('ofertas' , 'Ofertas\OfertaController');
                     Route::resource('ofertasVehiculo' , 'Ofertas\OfertaVehiculoController');
                     Route::resource('vehiculos' , 'Flota\VehiculoController');
                     Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
+                    Route::get('estadoVehiculo' , 'Flota\VehiculoController@estadoVehiculo');
+
+
+                    Route::resource('vehiculosSeguros' , 'Flota\VehiculoSeguroController');
+                    Route::resource('formasPago' , 'Maestro\FormaPagoController');
+
 
                     Route::resource('menu' , 'Menu\MenuController');
 
                     Route::resource('versiones' , 'Flota\VersionController');
+                    Route::resource('versionesCaracteristicas' , 'Flota\VersionCaracteristicasController');
                     Route::resource('modelos' , 'Flota\ModeloController');
                     Route::resource('marcas' , 'Flota\MarcaController');
+
+                    Route::resource('reservasWeb' , 'Reserva\ReservaWebController');
 
                     Route::resource('ordenFacturas', 'Operacion\OrdenFacturaController');
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
@@ -78,6 +87,10 @@ Route::group(
                     
                     Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
 
+                    Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
+                    Route::resource('proveedores' , 'Proveedor\ProveedorController');
+                    Route::resource('proveedoresFactura' , 'Proveedor\ProveedorFacturaController');
+                    Route::resource('proveedoresPagos' , 'Proveedor\ProveedorPagoController');
 
                     Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');

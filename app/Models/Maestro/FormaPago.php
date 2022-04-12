@@ -11,4 +11,7 @@ class FormaPago extends Model
 
     protected $table = 'maestro__forma_pago';
 
+    protected $guarded=[];
+    public $timestamps = false;
+
 }

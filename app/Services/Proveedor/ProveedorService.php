@@ -1,25 +1,25 @@
 <?php
 
-namespace App\Services\Flota;
+namespace App\Services\Proveedor;
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Flota\Version;
+use Models\Proveedor\Proveedor;
 
-class VersionService
+class ProveedorService
 {
     public function get($fields)
     {
-        $query = new Version();
+        $query = new Proveedor();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modelo','Modelo.marca','VersionCaracteristicas.combustible')->get();
+        return $query->with('tipoProveedor', 'delegacion')->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Version();
+        $query = new Proveedor();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -27,9 +27,10 @@ class VersionService
 
     public function save($data)
     {
+        
         DB::beginTransaction();
         try {
-            $modulo = new Version();
+            $modulo = new Proveedor();
             $modulo->fill($data);
             $modulo->save();
 
@@ -41,11 +42,11 @@ class VersionService
         return $modulo;
     }
 
-    public function edit($data, $id)
+    public function edit($data, $id) 
     {
         DB::beginTransaction();
         try {
-            $modulo = Version::find($id);
+            $modulo = Proveedor::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -61,7 +62,7 @@ class VersionService
     {
         DB::beginTransaction();
         try {
-            $modulo = Version::find($id);
+            $modulo = Proveedor::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -75,10 +76,9 @@ class VersionService
         }
     }
 
-    public function getQuery($fields, Version $query)
+    public function getQuery($fields, Proveedor $query)
     {
-
-        foreach ((new Version())->getColumnsName() as $column) {
+        foreach ((new Proveedor())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

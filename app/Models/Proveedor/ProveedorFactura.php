@@ -6,7 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 use Models\Delegacion;
 
-class Proveedor extends Model
+
+class ProveedorFactura extends Model
 {
     use ColumnsNameTrait;
 
@@ -14,14 +15,14 @@ class Proveedor extends Model
 
     public $timestamps = false;
 
-    protected $table = 'proveedor__proveedor';
+    protected $table = 'proveedor__factura';
 
-    public function tipoProveedor()
+    public function Proveedor()
     {
-        return $this->belongsTo(TipoProveedor::class);
+        return $this->belongsTo(Proveedor::class);
     }
 
-    public function delegacion()
+    public function Delegacion()
     {
         return $this->belongsTo(Delegacion::class);
     }

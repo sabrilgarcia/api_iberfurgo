@@ -1,29 +1,22 @@
 <?php
 
-namespace Models\Proveedor;
+namespace Models\Reserva;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 use Models\Delegacion;
 
-class Proveedor extends Model
+class ReservaWeb extends Model
 {
     use ColumnsNameTrait;
 
-    protected $guarded = [];
+    protected $table = 'reservas__web';
 
+    protected $guarded=[];
     public $timestamps = false;
-
-    protected $table = 'proveedor__proveedor';
-
-    public function tipoProveedor()
-    {
-        return $this->belongsTo(TipoProveedor::class);
-    }
 
     public function delegacion()
     {
         return $this->belongsTo(Delegacion::class);
     }
-
 }

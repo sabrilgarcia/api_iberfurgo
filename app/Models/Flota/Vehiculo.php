@@ -8,6 +8,7 @@ use Models\Delegacion;
 use Models\Franquicia\FranquiciaContrato;
 use Models\Flota\Version;
 
+
 class Vehiculo extends Model
 {
     use ColumnsNameTrait;

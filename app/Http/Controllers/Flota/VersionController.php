@@ -86,7 +86,7 @@ class VersionController extends ApiController
     {
         try {
             //$modulo = Oferta::findOrFail($id);
-            $version = Version::with('Modelo','Modelo.marca')->findOrFail($id);
+            $version = Version::with('Modelo','Modelo.marca','VersionCaracteristicas.combustible')->findOrFail($id);
             return $this->respond(['data' => $version]);
         } catch (ModelNotFoundException $e) {
             return $this->respondNotFound('Resource Modulo with id ' . $id . ' not found');

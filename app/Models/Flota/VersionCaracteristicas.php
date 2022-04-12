@@ -1,18 +1,23 @@
 <?php
 
-namespace Models;
+namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
-use Models\Modelo;
+use App\Http\Traits\ColumnsNameTrait;
+use Models\Combustible\Combustible;
 
 class VersionCaracteristicas extends Model
 {
+    use ColumnsNameTrait;
+
     protected $table = 'flota__version_caracteristicas';
 
-    //posee un modelo
-    public function modelo()
-    {
-        return $this->hasOne(Modelo::class, 'id', 'id');
+    protected $guarded=[];
+
+    public $timestamps = false;
+
+    public function combustible(){
+        return $this->belongsTo(Combustible::class);
     }
 
 }

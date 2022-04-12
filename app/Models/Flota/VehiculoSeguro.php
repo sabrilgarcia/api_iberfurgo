@@ -12,6 +12,8 @@ class VehiculoSeguro extends Model
     use ColumnsNameTrait;
 
     protected $table = 'flota__vehiculo_seguro';
+    protected $guarded=[];
+    public $timestamps = false;
 
     public function proveedor(){
         return $this->belongsTo(Proveedor::class);
@@ -19,5 +21,9 @@ class VehiculoSeguro extends Model
 
     public function formaPago(){
         return $this->belongsTo(FormaPago::class);
+    }
+
+    public function vehiculo(){
+        return $this->belongsTo(Vehiculo::class);
     }
 }

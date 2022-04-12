@@ -11,8 +11,6 @@ use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
 use Models\Flota\Vehiculo;
-use Models\Flota\VehiculoSearch;
-use Models\Operacion\OrdenFactura;
 use Models\Tipo;
 
 class VehiculoController extends ApiController
@@ -157,12 +155,12 @@ class VehiculoController extends ApiController
 
     public function estadoVehiculosGrupo(Request $fields)
     {
-        
+
         $vehiculosTotales = $this->getNumVehiculos('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
         $vehiculosAlquilados = $this->getNumVehiculosAlquilados('count',$fields['fecha_desde'], $fields['fecha_hasta'], $fields['delegacion_id']);
 
         $tipos = Tipo::all();
-        
+
         $arrResultado = null;
 
 
@@ -179,5 +177,10 @@ class VehiculoController extends ApiController
         $arrResultado['todos']['noAlquilados'] = $vehiculosTotales - $vehiculosAlquilados;
 
         return $arrResultado;
+    }
+
+    public function estadoVehiculo(Request $fields){
+        return $this->getEstadoVehiculo($fields['id'],$fields['fecha']);
+
     }
 }

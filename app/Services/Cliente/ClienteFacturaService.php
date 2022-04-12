@@ -14,7 +14,7 @@ class ClienteFacturaService
         $query = new Factura();
 
         $query = $this->getQuery($fields, $query);
-        return $query->get();
+        return $query->with('Delegacion','Cliente','FormaPago','OrdenFactura.Orden.OrdenDetalle.Vehiculo')->get();
     }
 
     public function pluck($fields)
@@ -27,7 +27,7 @@ class ClienteFacturaService
 
     public function save($data)
     {
-        
+
         DB::beginTransaction();
         try {
             $modulo = new Factura();
@@ -42,7 +42,7 @@ class ClienteFacturaService
         return $modulo;
     }
 
-    public function edit($data, $id) 
+    public function edit($data, $id)
     {
         DB::beginTransaction();
         try {

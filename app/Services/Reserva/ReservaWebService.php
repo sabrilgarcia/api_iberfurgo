@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Services\Flota;
+namespace App\Services\Reserva;
+
 
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Flota\Version;
+use Models\Reserva\ReservaWeb;
 
-class VersionService
+class ReservaWebService
 {
     public function get($fields)
     {
-        $query = new Version();
+        $query = new ReservaWeb();
 
         $query = $this->getQuery($fields, $query);
-        return $query->with('Modelo','Modelo.marca','VersionCaracteristicas.combustible')->get();
+        return $query->get();
     }
 
     public function pluck($fields)
     {
-        $query = new Version();
+        $query = new ReservaWeb();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -29,7 +30,7 @@ class VersionService
     {
         DB::beginTransaction();
         try {
-            $modulo = new Version();
+            $modulo = new ReservaWeb();
             $modulo->fill($data);
             $modulo->save();
 
@@ -45,7 +46,7 @@ class VersionService
     {
         DB::beginTransaction();
         try {
-            $modulo = Version::find($id);
+            $modulo = ReservaWeb::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -61,7 +62,7 @@ class VersionService
     {
         DB::beginTransaction();
         try {
-            $modulo = Version::find($id);
+            $modulo = ReservaWeb::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -75,10 +76,10 @@ class VersionService
         }
     }
 
-    public function getQuery($fields, Version $query)
+    public function getQuery($fields, ReservaWeb $query)
     {
 
-        foreach ((new Version())->getColumnsName() as $column) {
+        foreach ((new ReservaWeb())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }
