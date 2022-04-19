@@ -3,9 +3,9 @@
 namespace App\Services;
 
 use Models\Tarifa;
-use Models\Tipo;
 use App\Functions\EloquentAbstraction;
 use Carbon\Carbon;
+use Models\Flota\Tipo;
 
 class TarifaService
 {

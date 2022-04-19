@@ -87,7 +87,6 @@ trait VehiculosTrait
                             OR (fecha_inicio >= ' " . $fecha_desde . " ' AND fecha_inicio <= ' " . $fecha_hasta . " ' AND IF(ISNULL(fecha_fin) = 1 ,'".$hoy."' , fecha_fin) >= ' " . $fecha_hasta . " ')
                             OR (fecha_inicio <= ' " . $fecha_desde . " ' AND IF(ISNULL(fecha_fin) = 1 ,'".$hoy."' , fecha_fin) >= ' " . $fecha_desde . " ' AND IF(ISNULL(fecha_fin) = 1 ,'".$hoy."' , fecha_fin) <= ' " . $fecha_hasta . " ')
                         )";
-
         $resultado =  DB::select(DB::raw($sql));
 
 

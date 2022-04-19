@@ -2,9 +2,10 @@
 
 namespace App\Services;
 
-use Models\Tipo;
+
 use App\Functions\EloquentAbstraction;
 use Illuminate\Support\Facades\DB;
+use Models\Flota\Tipo;
 
 class TipoService
 {

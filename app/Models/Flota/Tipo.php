@@ -1,9 +1,10 @@
 <?php
 
-namespace Models;
+namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Tarifa;
 
 class Tipo extends Model
 {
@@ -17,11 +18,6 @@ class Tipo extends Model
     {
         return $this->attributes['id'];
     }
-    //un tipo tiene varios modelos
-    // public function modelos()
-    // {
-    //     return $this->belongsTo(Modelo::class, 'tipo_id');
-    // }
 
     public function getPrecioDesdeAttribute()
     {

@@ -6,8 +6,9 @@ use Models\Reserva;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Tipo;
+
 use Illuminate\Support\Carbon;
+use Models\Flota\Tipo;
 
 class ReservaService
 {
