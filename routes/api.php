@@ -63,8 +63,10 @@ Route::group(
                     Route::get('estadoVehiculosGrupo' , 'Flota\VehiculoController@estadoVehiculosGrupo');
                     Route::get('estadoVehiculo' , 'Flota\VehiculoController@estadoVehiculo');
 
+
                     Route::resource('vehiculosSeguros' , 'Flota\VehiculoSeguroController');
                     Route::resource('formasPago' , 'Maestro\FormaPagoController');
+
 
                     Route::resource('menu' , 'Menu\MenuController');
 
@@ -87,9 +89,15 @@ Route::group(
                     Route::get('get-clientes-pendientes-facturar', 'Cliente\ClienteController@getClientesPendientesFacturar');
 
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
+                    Route::get('numFacturas', 'Cliente\ClienteFacturaController@getNumFacturas');
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
+
                     Route::resource('cobros', 'Cliente\CobroController');
+
+                    
+                    Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
+
 
                     Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');
