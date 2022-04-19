@@ -34,11 +34,16 @@ Route::group(
                     Route::resource('maestro-delegacion-datos-web', DelegacionDatosWebController::class);
                     Route::resource('maestro-provincia-datos-web', 'Maestro\ProvinciaDatosWebController');
                     Route::resource('maestro-tarifa', TarifaController::class);
+                    Route::resource('bancos', 'Maestro\BancoController');
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
+
                     Route::get('get-tarifa', 'TarifaController@getTarifa');
                     Route::get('get-tarifa-free-day', 'TarifaController@getTarifaFreeDay');
+                    Route::get('getPeriodos', 'TarifaController@getPeriodos');
+                    Route::resource('periodos', 'Maestro\PeriodoController');
+
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
                     Route::get('get-familias-vehiculo', 'TipoController@getFamiliasVehiculo');
 
@@ -76,6 +81,7 @@ Route::group(
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
                     Route::resource('ordenDetalle', 'Operacion\OrdenDetalleController');
+                    
 
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
 
@@ -88,6 +94,7 @@ Route::group(
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
                     
                     Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
+                    Route::resource('cobros', 'Cliente\CobroController');
 
                     Route::resource('tiposProveedor' , 'Proveedor\TipoProveedorController');
                     Route::resource('proveedores' , 'Proveedor\ProveedorController');

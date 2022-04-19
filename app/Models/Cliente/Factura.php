@@ -27,7 +27,7 @@ class Factura extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
-
+    
     public function FormaPago()
     {
         return $this->belongsTo(FormaPago::class, 'formapago_id','id');
@@ -38,7 +38,8 @@ class Factura extends Model
         return $this->belongsTo(OrdenFactura::class, 'id', 'factura_id');
     }
 
-    public function FacturaItems(){
+    public function FacturaItems()
+    {
         return $this->hasMany(FacturaItem::class);
     }
 

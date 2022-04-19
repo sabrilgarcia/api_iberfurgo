@@ -4,6 +4,7 @@ namespace Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Cliente\Cobro;
 use Models\Maestro\Empresa;
 
 class Delegacion extends Model

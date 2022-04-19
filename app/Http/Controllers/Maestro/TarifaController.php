@@ -7,6 +7,7 @@ use App\Services\TarifaService;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 
@@ -63,5 +64,37 @@ class TarifaController extends ApiController
         } catch (\Exception $e) {
             return $this->respondInternalError($e->getMessage());
         }
+    }
+
+    public function getTarifaFreeDay(Request $request)
+    {
+        try {
+            $fields = $request->all();
+            $validator = Validator::make($fields, Tarifa::rules());
+
+            if ($validator->fails()) {
+                return response()->json(['success' => false, 'error'=>$validator->errors()], 401);
+            }
+
+            $results = $this->defaultService->getTarifaFreeDay($fields);
+            return $this->respond(['data' => $results]);
+        } catch (\Exception $e) {
+            return $this->respondInternalError($e->getMessage());
+        }
+    }
+
+    public function getPeriodos(Request $request)
+    {
+        $anyo = $request['anyo'];
+        
+        $periodos = DB::table('maestro__tarifa')
+                    ->select('fecha_inicio', 'fecha_fin')
+                    ->where('fecha_inicio' , '>=' , $anyo.'-01-01')
+                    ->where('fecha_fin' , '<=' , $anyo.'-12-31')
+                    ->distinct()
+                    ->get();
+        
+        return $periodos;
+                    
     }
 }
