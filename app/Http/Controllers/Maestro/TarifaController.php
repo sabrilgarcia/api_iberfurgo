@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Maestro;
 
-use Models\Tarifa;
-use App\Services\TarifaService;
+use App\Http\Controllers\ApiController;
+use App\Services\Maestro\TarifaService;
+use Models\Maestro\Tarifa;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;

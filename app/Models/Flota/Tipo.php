@@ -1,9 +1,10 @@
 <?php
 
-namespace Models;
+namespace Models\Flota;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
+use Models\Maestro\Tarifa;
 
 class Tipo extends Model
 {

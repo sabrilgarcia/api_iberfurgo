@@ -29,19 +29,19 @@ Route::group(
                     Route::post('details', 'UserController@details');
                     Route::resource('flota-modelo', ModeloController::class);
                     // Route::resource('flota-marca', MarcaController::class);
-                    Route::resource('flota-tipo', TipoController::class);
+                    Route::resource('flota-tipo', 'Flota\TipoController');
                     Route::resource('maestro-delegacion', DelegacionController::class);
                     Route::resource('maestro-delegacion-datos-web', DelegacionDatosWebController::class);
                     Route::resource('maestro-provincia-datos-web', 'Maestro\ProvinciaDatosWebController');
-                    Route::resource('maestro-tarifa', TarifaController::class);
+                    Route::resource('maestro-tarifa', 'Maestro\TarifaController');
                     Route::resource('bancos', 'Maestro\BancoController');
                     Route::resource('maestro-provincia', ProvinciaController::class);
                     Route::resource('reservas-web', ReservaController::class);
                     Route::resource('contacto-web', ContactoController::class);
 
-                    Route::get('get-tarifa', 'TarifaController@getTarifa');
-                    Route::get('get-tarifa-free-day', 'TarifaController@getTarifaFreeDay');
-                    Route::get('getPeriodos', 'TarifaController@getPeriodos');
+                    Route::get('get-tarifa', 'Maestro\TarifaController@getTarifa');
+                    Route::get('get-tarifa-free-day', 'Maestro\TarifaController@getTarifaFreeDay');
+                    Route::get('getPeriodos', 'Maestro\TarifaController@getPeriodos');
                     Route::resource('periodos', 'Maestro\PeriodoController');
 
                     Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');

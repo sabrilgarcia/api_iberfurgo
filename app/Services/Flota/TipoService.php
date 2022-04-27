@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Flota;
 
-use Models\Tipo;
+
 use App\Functions\EloquentAbstraction;
-use Illuminate\Support\Facades\DB;
+use Models\Flota\Tipo;
 
 class TipoService
 {

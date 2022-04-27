@@ -10,8 +10,9 @@ use App\Services\Flota\VehiculoService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
+use Models\Flota\Tipo;
 use Models\Flota\Vehiculo;
-use Models\Tipo;
+
 
 class VehiculoController extends ApiController
 {

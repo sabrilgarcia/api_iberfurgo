@@ -1,14 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Flota;
 
-use Models\Tipo;
-use App\Services\TipoService;
+use App\Http\Controllers\ApiController;
+use App\Services\Flota\TipoService;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Arr;
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Flota\Tipo;
 use Models\Flota\Version as FlotaVersion;
 use Models\Flota\VersionCaracteristicas;
 
