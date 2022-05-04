@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Maestro;
 
-use Models\DelegacionDatosWeb;
-use App\Services\DelegacionDatosWebService;
-
+use App\Http\Controllers\ApiController;
+use App\Services\Maestro\DelegacionDatosWebService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Maestro\DelegacionDatosWeb;
 
 class DelegacionDatosWebController extends ApiController
 {

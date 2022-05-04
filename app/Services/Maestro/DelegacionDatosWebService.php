@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Maestro;
 
-use Models\DelegacionDatosWeb;
+
 use App\Functions\EloquentAbstraction;
-
+use Models\Maestro\DelegacionDatosWeb;
 
 class DelegacionDatosWebService
 {

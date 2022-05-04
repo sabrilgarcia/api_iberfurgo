@@ -2,11 +2,11 @@
 
 namespace App\Services\Maestro;
 
-use Models\Maestro\Tarifa;
 
 use App\Functions\EloquentAbstraction;
 use Carbon\Carbon;
 use Models\Flota\Tipo;
+use Models\Maestro\Tarifa;
 
 class TarifaService
 {

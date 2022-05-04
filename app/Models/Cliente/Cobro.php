@@ -4,8 +4,9 @@ namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
+
 use Models\Maestro\Banco;
+use Models\Maestro\Delegacion;
 use Models\Maestro\FormaPago;
 
 class Cobro extends Model

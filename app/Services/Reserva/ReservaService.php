@@ -1,14 +1,14 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Reserva;
 
-use Models\Reserva;
+
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-
 use Illuminate\Support\Carbon;
 use Models\Flota\Tipo;
+use Models\Reserva\Reserva;
 
 class ReservaService
 {

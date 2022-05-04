@@ -4,14 +4,13 @@ namespace App\Http\Controllers\Maestro;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Maestro\TarifaService;
-use Models\Maestro\Tarifa;
 
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Models\Maestro\Tarifa;
 
 class TarifaController extends ApiController
 {
@@ -88,15 +87,15 @@ class TarifaController extends ApiController
     public function getPeriodos(Request $request)
     {
         $anyo = $request['anyo'];
-        
+
         $periodos = DB::table('maestro__tarifa')
                     ->select('fecha_inicio', 'fecha_fin')
                     ->where('fecha_inicio' , '>=' , $anyo.'-01-01')
                     ->where('fecha_fin' , '<=' , $anyo.'-12-31')
                     ->distinct()
                     ->get();
-        
+
         return $periodos;
-                    
+
     }
 }

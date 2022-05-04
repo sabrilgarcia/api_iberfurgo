@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Models\Flota\Tipo;
-use Models\Flota\Version as FlotaVersion;
+use Models\Flota\Version;
 use Models\Flota\VersionCaracteristicas;
 
 class TipoController extends ApiController
@@ -43,7 +43,7 @@ class TipoController extends ApiController
             $tipo = Tipo::where('id', $tipo_id)->firstOrFail();
 
             if ($tipo) {
-                $version = FlotaVersion::where('tipo_id', $tipo_id)->orderBy('id', 'ASC')->first();
+                $version = Version::where('tipo_id', $tipo_id)->orderBy('id', 'ASC')->first();
                 if ($version) {
                     $tipo->caracteristicas = VersionCaracteristicas::find($version->id);
                 } else {

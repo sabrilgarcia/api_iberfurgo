@@ -4,7 +4,7 @@ namespace Models\Proveedor;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
+use Models\Maestro\Delegacion;
 
 class Proveedor extends Model
 {

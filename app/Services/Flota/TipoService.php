@@ -2,9 +2,8 @@
 
 namespace App\Services\Flota;
 
-
-use App\Functions\EloquentAbstraction;
 use Models\Flota\Tipo;
+use App\Functions\EloquentAbstraction;
 
 class TipoService
 {

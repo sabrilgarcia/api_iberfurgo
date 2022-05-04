@@ -4,7 +4,7 @@ namespace Models\Soporte;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
+use Models\Maestro\Delegacion;
 use Models\Maestro\DelegacionIndice;
 
 class Ticket extends Model

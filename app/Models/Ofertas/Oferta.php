@@ -5,10 +5,9 @@ namespace Models\Ofertas;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 use Models\Cliente\Cliente;
-use Models\Delegacion;
+use Models\Maestro\Delegacion;
 use Models\Maestro\DelegacionIndice;
-use Models\Marca;
-use Models\Modelo;
+
 
 class Oferta extends Model
 {

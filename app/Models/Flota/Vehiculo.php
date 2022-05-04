@@ -4,10 +4,10 @@ namespace Models\Flota;
 
 use App\Http\Traits\ColumnsNameTrait;
 use Illuminate\Database\Eloquent\Model;
-use Models\Delegacion;
+
 use Models\Franquicia\FranquiciaContrato;
 use Models\Flota\Version;
-
+use Models\Maestro\Delegacion;
 
 class Vehiculo extends Model
 {

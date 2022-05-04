@@ -4,8 +4,8 @@ namespace Models\Maestro;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\DelegacionDatosWeb;
-use Models\Provincia;
+
+
 
 class ProvinciaDatosWeb extends Model
 {

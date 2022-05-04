@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Models\Contacto;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
