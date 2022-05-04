@@ -27,25 +27,25 @@ Route::group(
                 {
                     Route::post('logout', 'UserController@logout');
                     Route::post('details', 'UserController@details');
-                    Route::resource('flota-modelo', ModeloController::class);
+                    Route::resource('flota-modelo', 'Flota\ModeloController');
                     // Route::resource('flota-marca', MarcaController::class);
-                    Route::resource('flota-tipo', TipoController::class);
-                    Route::resource('maestro-delegacion', DelegacionController::class);
-                    Route::resource('maestro-delegacion-datos-web', DelegacionDatosWebController::class);
+                    Route::resource('flota-tipo', 'Flota\TipoController');
+                    Route::resource('maestro-delegacion', 'Maestro\DelegacionController');
+                    Route::resource('maestro-delegacion-datos-web', 'Maestro\DelegacionDatosWebController');
                     Route::resource('maestro-provincia-datos-web', 'Maestro\ProvinciaDatosWebController');
-                    Route::resource('maestro-tarifa', TarifaController::class);
+                    Route::resource('maestro-tarifa', 'Maestro\TarifaController');
                     Route::resource('bancos', 'Maestro\BancoController');
-                    Route::resource('maestro-provincia', ProvinciaController::class);
-                    Route::resource('reservas-web', ReservaController::class);
-                    Route::resource('contacto-web', ContactoController::class);
+                    Route::resource('maestro-provincia', 'Maestro\ProvinciaController');
+                    Route::resource('reservas-web', 'Reserva\ReservaController');
+                    Route::resource('contacto-web', 'Contacto\ContactoController');
 
-                    Route::get('get-tarifa', 'TarifaController@getTarifa');
-                    Route::get('get-tarifa-free-day', 'TarifaController@getTarifaFreeDay');
-                    Route::get('getPeriodos', 'TarifaController@getPeriodos');
+                    Route::get('get-tarifa', 'Maestro\TarifaController@getTarifa');
+                    Route::get('get-tarifa-free-day', 'Maestro\TarifaController@getTarifaFreeDay');
+                    Route::get('getPeriodos', 'Maestro\TarifaController@getPeriodos');
                     Route::resource('periodos', 'Maestro\PeriodoController');
 
-                    Route::get('get-tipos-vehiculo' , 'TipoController@get_enum_values');
-                    Route::get('get-familias-vehiculo', 'TipoController@getFamiliasVehiculo');
+                    Route::get('get-tipos-vehiculo' , 'Flota\TipoController@get_enum_values');
+                    Route::get('get-familias-vehiculo', 'Flota\TipoController@getFamiliasVehiculo');
 
 
                     Route::resource('modulos' , 'Soporte\ModuloController');
@@ -90,7 +90,7 @@ Route::group(
 
                     Route::resource('facturas', 'Cliente\ClienteFacturaController');
                     Route::get('numFacturas', 'Cliente\ClienteFacturaController@getNumFacturas');
-                    Route::resource('facturasSearch', 'Cliente\FacturaSearchController');
+                    Route::resource('facturasSearch', 'Cliente\FacturaSearchController'); //REVISAR DA ERROR
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
                     
                     Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
@@ -101,7 +101,7 @@ Route::group(
                     Route::resource('proveedoresFactura' , 'Proveedor\ProveedorFacturaController');
                     Route::resource('proveedoresPagos' , 'Proveedor\ProveedorPagoController');
 
-                    Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos');
+                    Route::get('facturacion-grupos', 'Operacion\OrdenFacturaController@getFacturacionGrupos'); //ERROR FALTA UN METODO
                     Route::get('get-contratos-sin-facturas', 'Operacion\OrdenFacturaController@getContratosSinFactura');
 
                 }

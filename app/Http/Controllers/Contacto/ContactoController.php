@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Contacto;
 
-use Models\Contacto;
-use App\Services\ContactoService;
+use App\Http\Controllers\ApiController;
+use App\Services\Contacto\ContactoService;
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Contacto\Contacto;
 
 class ContactoController extends ApiController
 {

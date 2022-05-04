@@ -1,6 +1,6 @@
 <?php
 
-namespace Models;
+namespace Models\Reserva;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;

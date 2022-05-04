@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Contacto;
 
-use Models\Contacto;
+
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
+use Models\Contacto\Contacto;
 
 class ContactoService
 {

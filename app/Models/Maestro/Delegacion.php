@@ -1,11 +1,13 @@
 <?php
 
-namespace Models;
+namespace Models\Maestro;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Cliente\Cobro;
+
 use Models\Maestro\Empresa;
+use Models\Ofertas\Oferta;
+use Models\Soporte\Ticket;
 
 class Delegacion extends Model
 {

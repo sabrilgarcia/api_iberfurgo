@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Maestro;
 
-use Models\Provincia;
-use App\Services\ProvinciaService;
+use App\Http\Controllers\ApiController;
+use App\Services\Maestro\ProvinciaService;
+
+
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Maestro\Provincia;
 
 class ProvinciaController extends ApiController
 {

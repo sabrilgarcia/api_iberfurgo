@@ -4,7 +4,7 @@ namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
+use Models\Maestro\Delegacion;
 use Models\Ofertas\Oferta;
 
 class Cliente extends Model

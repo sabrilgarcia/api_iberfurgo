@@ -1,12 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Reserva;
 
-use Models\Reserva;
-use App\Services\ReservaService;
-
+use App\Http\Controllers\ApiController;
+use App\Services\Reserva\ReservaService;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Models\Reserva\Reserva;
 
 class ReservaController extends ApiController
 {

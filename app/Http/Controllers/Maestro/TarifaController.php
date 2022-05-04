@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Maestro;
 
-use Models\Tarifa;
-use App\Services\TarifaService;
+use App\Http\Controllers\ApiController;
+use App\Services\Maestro\TarifaService;
+
 
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
-
+use Models\Maestro\Tarifa;
 
 class TarifaController extends ApiController
 {

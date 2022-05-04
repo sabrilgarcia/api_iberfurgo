@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Maestro;
 
-use Models\Delegacion;
+
 use App\Functions\EloquentAbstraction;
-
+use Models\Maestro\Delegacion;
 
 class DelegacionService
 {

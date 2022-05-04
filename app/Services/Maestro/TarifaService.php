@@ -1,11 +1,13 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Maestro;
 
-use Models\Tarifa;
-use Models\Tipo;
+
+
 use App\Functions\EloquentAbstraction;
 use Carbon\Carbon;
+use Models\Flota\Tipo;
+use Models\Maestro\Tarifa;
 
 class TarifaService
 {

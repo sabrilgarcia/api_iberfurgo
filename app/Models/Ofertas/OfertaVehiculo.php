@@ -4,8 +4,8 @@ namespace Models\Ofertas;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Marca;
-use Models\Modelo;
+use Models\Flota\Marca;
+use Models\Flota\Modelo;
 
 class OfertaVehiculo extends Model
 {

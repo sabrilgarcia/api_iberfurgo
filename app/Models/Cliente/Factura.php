@@ -4,7 +4,7 @@ namespace Models\Cliente;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
-use Models\Delegacion;
+use Models\Maestro\Delegacion;
 use Models\Maestro\FormaPago;
 use Models\Operacion\OrdenFactura;
 
