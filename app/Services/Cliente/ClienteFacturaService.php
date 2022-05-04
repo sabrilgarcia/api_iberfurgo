@@ -60,6 +60,14 @@ class ClienteFacturaService
             $query=$query->where('formapago_id',$fields['formapago_id']);
         }
         //paginador
+        if(isset($fields['ordenarPor'])&&isset($fields['tipoOrden'])){
+            if($fields['ordenarPor']!='fecha'){
+                $query=$query->orderBy($fields['ordenarPor'],$fields['tipoOrden']);
+            }else{
+                $query=$query->orderBy('fecha',$fields['tipoOrden']);
+                $query=$query->orderBy('fecha_proforma',$fields['tipoOrden']);
+            }
+        }
         if(isset($fields['pagina'])&&isset($fields['offset'])){
             $query= $query->skip(($fields['pagina']-1)*$fields['offset']);
             $query= $query->take($fields['offset']);
