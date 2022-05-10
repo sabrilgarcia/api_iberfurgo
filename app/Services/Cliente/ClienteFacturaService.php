@@ -20,6 +20,9 @@ class ClienteFacturaService
         if(isset($fields['numeroFactura'])){
             $query=$query->where('numero','LIKE','%'.$fields['numeroFactura'].'%');
         }
+        if(isset($fields['cliente'])){
+            $query=$query->where('_cliente','LIKE','%'.$fields['cliente'].'%');
+        }
         if(isset($fields['fecha_factura_desde'])){
             $query=$query->where('fecha','>=',$fields['fecha_factura_desde']);
         }
