@@ -5,7 +5,6 @@ namespace Models\Maestro;
 use Illuminate\Database\Eloquent\Model;
 use App\Http\Traits\ColumnsNameTrait;
 use Illuminate\Validation\Rule;
-
 use Models\Flota\Tipo;
 
 class Tarifa extends Model

@@ -87,15 +87,15 @@ class TarifaController extends ApiController
     public function getPeriodos(Request $request)
     {
         $anyo = $request['anyo'];
-        
+
         $periodos = DB::table('maestro__tarifa')
                     ->select('fecha_inicio', 'fecha_fin')
                     ->where('fecha_inicio' , '>=' , $anyo.'-01-01')
                     ->where('fecha_fin' , '<=' , $anyo.'-12-31')
                     ->distinct()
                     ->get();
-        
+
         return $periodos;
-                    
+
     }
 }

@@ -3,7 +3,6 @@
 namespace App\Services\Maestro;
 
 
-
 use App\Functions\EloquentAbstraction;
 use Carbon\Carbon;
 use Models\Flota\Tipo;

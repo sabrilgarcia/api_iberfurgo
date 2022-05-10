@@ -81,7 +81,7 @@ Route::group(
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
                     Route::resource('ordenDetalle', 'Operacion\OrdenDetalleController');
-                    
+
 
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
 
@@ -92,7 +92,7 @@ Route::group(
                     Route::get('numFacturas', 'Cliente\ClienteFacturaController@getNumFacturas');
                     Route::resource('facturasSearch', 'Cliente\FacturaSearchController'); //REVISAR DA ERROR
                     Route::resource('facturasItem', 'Cliente\ClienteFacturaItemController');
-                    
+
                     Route::resource('tipoProveedor', 'Proveedor\TipoProveedorController');
                     Route::resource('cobros', 'Cliente\CobroController');
 

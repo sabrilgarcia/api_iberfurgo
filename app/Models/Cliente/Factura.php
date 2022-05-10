@@ -27,7 +27,7 @@ class Factura extends Model
     {
         return $this->belongsTo(Cliente::class);
     }
-    
+
     public function FormaPago()
     {
         return $this->belongsTo(FormaPago::class, 'formapago_id','id');
@@ -75,6 +75,7 @@ class Factura extends Model
             $alquiler=$this->OrdenFactura->Orden->alquiler;
         }
 
-        return number_format($this->Total-$this->Cobrado-$alquiler, 2, '.', '');
+       // return number_format($this->Total-$this->Cobrado-$alquiler, 2, '.', '');
+       return number_format($this->Total-$this->Cobrado, 2, '.', '');
     }
 }
