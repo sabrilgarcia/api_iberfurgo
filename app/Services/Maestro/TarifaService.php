@@ -95,6 +95,7 @@ class TarifaService
                     ->where('desde', $desde)
                     ->where('fecha_inicio', '<=', $startDate->format('Y-m-d'))
                     ->where('fecha_fin', '>=', $endDate->format('Y-m-d'))
+                    ->where('tipo_id', "!=", 'MH')
                     ->get();
 
         foreach ($tarifas as &$tarifa) {
@@ -130,6 +131,7 @@ class TarifaService
         $tipos = Tarifa::where('tipo_tarifa', $fields['tipo_tarifa'])
         ->where('delegacion_id', $fields['delegacion_id'])
         ->where('desde', $desde)
+        ->where('tipo_id', "!=", 'MH')
         // ->orderBy('fecha_inicio', 'ASC')
         ->groupBy('tipo_id')
         ->pluck('tipo_id');
@@ -207,7 +209,7 @@ class TarifaService
 
     public function getTarifa($fields)
     {
-
+        
         //sacar cuantos dias hay entre las dos fechas
         $startDateFull = Carbon::createFromFormat('Y-m-d H:i', $fields['fecha_inicio']);
         $endDateFull = Carbon::createFromFormat('Y-m-d H:i', $fields['fecha_fin']);

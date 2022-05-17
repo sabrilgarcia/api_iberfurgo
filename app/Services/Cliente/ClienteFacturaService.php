@@ -53,8 +53,9 @@ class ClienteFacturaService
         if(isset($fields['matricula'])){
             $query=$query->where('matricula','LIKE','%'.$fields['matricula'].'%');
         }
+        
         if(isset($fields['delegacion_id']) && $fields['delegacion_id']!=0){
-            $query=$query->where('delegacion_id',$fields['delegacion_id']);
+            $query=$query->whereIn('delegacion_id',$fields['delegacion_id']);
         }
         if(isset($fields['formapago_id']) && $fields['formapago_id']!=0){
             $query=$query->where('formapago_id',$fields['formapago_id']);

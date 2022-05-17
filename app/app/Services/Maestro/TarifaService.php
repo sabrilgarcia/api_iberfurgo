@@ -208,7 +208,7 @@ class TarifaService
 
     public function getTarifa($fields)
     {
-
+dd('entra');
         //sacar cuantos dias hay entre las dos fechas
         $startDateFull = Carbon::createFromFormat('Y-m-d H:i', $fields['fecha_inicio']);
         $endDateFull = Carbon::createFromFormat('Y-m-d H:i', $fields['fecha_fin']);
