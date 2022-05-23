@@ -16,9 +16,14 @@ class ClienteFacturaService
 
         $query = FacturaSearch::getQuery($fields, $query);
 
+        $query = $query->where('numero','!=','NULL');
+
         //buscador
         if(isset($fields['numeroFactura'])){
             $query=$query->where('numero','LIKE','%'.$fields['numeroFactura'].'%');
+        }
+        if(isset($fields['cliente'])){
+            $query=$query->where('_cliente','LIKE','%'.$fields['cliente'].'%');
         }
         if(isset($fields['fecha_factura_desde'])){
             $query=$query->where('fecha','>=',$fields['fecha_factura_desde']);
@@ -54,11 +59,27 @@ class ClienteFacturaService
             $query=$query->where('matricula','LIKE','%'.$fields['matricula'].'%');
         }
         if(isset($fields['delegacion_id']) && $fields['delegacion_id']!=0){
-            $query=$query->where('delegacion_id',$fields['delegacion_id']);
-        }
+            $arrDelegaciones=explode(',',$fields['delegacion_id']);
+            if(count($arrDelegaciones)>1){
+                 $query=$query->where(function($consulta) use($arrDelegaciones) {
+                     $i=0;
+                     foreach($arrDelegaciones as $delegacion){
+                         if($i==0){
+                             $consulta=$consulta->where('delegacion_id',$delegacion);
+                         }else{
+                             $consulta=$consulta->orWhere('delegacion_id',$delegacion);
+                         }
+                         $i++;
+                     }
+                 });
+            }else{
+                 $query=$query->where('delegacion_id',$fields['delegacion_id']);
+            }
+         }
         if(isset($fields['formapago_id']) && $fields['formapago_id']!=0){
             $query=$query->where('formapago_id',$fields['formapago_id']);
         }
+
         //paginador
         if(isset($fields['ordenarPor'])&&isset($fields['tipoOrden'])){
             if($fields['ordenarPor']!='fecha'){
@@ -84,6 +105,7 @@ class ClienteFacturaService
         $query = new FacturaSearch();
         $query = FacturaSearch::getQuery($fields, $query);
 
+        $query = $query->where('numero','!=','NULL');
         //buscador
         if(isset($fields['numeroFactura'])){
             $query=$query->where('numero','LIKE','%'.$fields['numeroFactura'].'%');
@@ -122,7 +144,22 @@ class ClienteFacturaService
             $query=$query->where('matricula','LIKE','%'.$fields['matricula'].'%');
         }
         if(isset($fields['delegacion_id']) && $fields['delegacion_id']!=0){
-            $query=$query->where('delegacion_id',$fields['delegacion_id']);
+            $arrDelegaciones=explode(',',$fields['delegacion_id']);
+            if(count($arrDelegaciones)>1){
+                 $query=$query->where(function($consulta) use($arrDelegaciones) {
+                     $i=0;
+                     foreach($arrDelegaciones as $delegacion){
+                         if($i==0){
+                             $consulta=$consulta->where('delegacion_id',$delegacion);
+                         }else{
+                             $consulta=$consulta->orWhere('delegacion_id',$delegacion);
+                         }
+                         $i++;
+                     }
+                 });
+            }else{
+                 $query=$query->where('delegacion_id',$fields['delegacion_id']);
+            }
         }
         if(isset($fields['formapago_id']) && $fields['formapago_id']!=0){
             $query=$query->where('formapago_id',$fields['formapago_id']);
