@@ -158,7 +158,7 @@ class ClienteController extends ApiController
                 ->where('cliente__cliente_search.delegacion_id', $fields['delegacion_id'])
                 ->whereNull('operacion__orden_factura.factura_id')
                 ->where('operacion__orden.momento','CONTRATO')
-                ->where('operacion__orden.alquiler','>',0)
+                // ->where('operacion__orden.alquiler','>',0)
                 ->groupBy('cliente__cliente_search.id')
                 ->distinct()
                 ->get();
