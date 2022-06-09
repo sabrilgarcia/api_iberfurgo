@@ -81,6 +81,8 @@ Route::group(
                     Route::resource('ordenItem', 'Operacion\OrdenItemController');
                     Route::resource('ordenes', 'Operacion\OrdenController');
                     Route::resource('ordenDetalle', 'Operacion\OrdenDetalleController');
+                    Route::resource('adeudoSepa', 'Operacion\AdeudoSepaController');
+                    Route::resource('adeudoSepaEstado', 'Operacion\AdeudoSepaEstadoController');
                     
 
                     Route::resource('facturaVehiculos', 'Cliente\FacturaVehiculoController');
