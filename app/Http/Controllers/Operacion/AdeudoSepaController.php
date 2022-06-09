@@ -79,7 +79,7 @@ class AdeudoSepaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ordenFactura = AdeudoSepa::with('Empresa')->findOrFail($id);
+            $ordenFactura = AdeudoSepa::with('Empresa','AdeudoSepaEstado')->findOrFail($id);
 
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {

@@ -14,9 +14,6 @@ class AdeudoSepaEstado extends Model
 
     protected $table = "operacion__adeudos_estados_sepa";
 
-    public function adeudoSepa()
-    {
-        return $this->belongsTo(AdeudoSepa::class);
-    }
+    
 
 }

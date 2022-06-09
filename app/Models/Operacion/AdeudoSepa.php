@@ -19,4 +19,9 @@ class AdeudoSepa extends Model
         return $this->belongsTo(Empresa::class, 'franquiciado_id', 'id');
     }
 
+    public function adeudoSepaEstado()
+    {
+        return $this->belongsTo(AdeudoSepaEstado::class, 'estado_remesa_id', 'id');
+    }
+
 }
