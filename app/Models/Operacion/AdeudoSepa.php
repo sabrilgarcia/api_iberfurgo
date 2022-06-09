@@ -19,7 +19,7 @@ class AdeudoSepa extends Model
         return $this->belongsTo(Empresa::class, 'franquiciado_id', 'id');
     }
 
-    public function adeudoSepaEstado()
+    public function remesaSepa()
     {
         return $this->belongsTo(RemesaSepa::class, 'remesa_id', 'id');
     }

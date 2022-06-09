@@ -14,7 +14,7 @@ class AdeudoSepaService
         $query = new AdeudoSepa();
 
         $query = $this->getQuery($fields, $query);
-        return $query->get();
+        return $query->with('Empresa','RemesaSepa.EstadoRemesa')->get();
     }
 
     public function pluck($fields)

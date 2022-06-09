@@ -14,7 +14,7 @@ class RemesaSepaService
         $query = new RemesaSepa();
 
         $query = $this->getQuery($fields, $query);
-        return $query->get();
+        return $query->with('adeudos')->get();
     }
 
     public function pluck($fields)

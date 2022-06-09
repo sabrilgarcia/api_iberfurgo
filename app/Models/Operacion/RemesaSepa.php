@@ -19,4 +19,10 @@ class RemesaSepa extends Model
         return $this->belongsTo(RemesaSepaEstado::class, 'estado_remesa_id', 'id');
     }
 
+    public function adeudos()
+    {
+        return $this->hasMany(AdeudoSepa::class, 'remesa_id', 'id');
+    }
+
+
 }

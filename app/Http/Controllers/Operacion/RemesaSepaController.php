@@ -80,7 +80,7 @@ class RemesaSepaController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ordenFactura = RemesaSepa::findOrFail($id);
+            $ordenFactura = RemesaSepa::with('adeudos')->findOrFail($id);
 
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {
