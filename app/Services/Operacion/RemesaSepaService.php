@@ -5,13 +5,13 @@ namespace App\Services\Operacion;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Operacion\AdeudoSepa;
+use Models\Operacion\RemesaSepa;
 
-class AdeudoSepaService
+class RemesaSepaService
 {
     public function get($fields)
     {
-        $query = new AdeudoSepa();
+        $query = new RemesaSepa();
 
         $query = $this->getQuery($fields, $query);
         return $query->get();
@@ -19,7 +19,7 @@ class AdeudoSepaService
 
     public function pluck($fields)
     {
-        $query = new AdeudoSepa();
+        $query = new RemesaSepa();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +30,7 @@ class AdeudoSepaService
 
         DB::beginTransaction();
         try {
-            $modulo = new AdeudoSepa();
+            $modulo = new RemesaSepa();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +46,7 @@ class AdeudoSepaService
     {
         DB::beginTransaction();
         try {
-            $modulo = AdeudoSepa::find($id);
+            $modulo = RemesaSepa::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class AdeudoSepaService
     {
         DB::beginTransaction();
         try {
-            $modulo = AdeudoSepa::find($id);
+            $modulo = RemesaSepa::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class AdeudoSepaService
         }
     }
 
-    public function getQuery($fields, AdeudoSepa $query)
+    public function getQuery($fields, RemesaSepa $query)
     {
-        foreach ((new AdeudoSepa())->getColumnsName() as $column) {
+        foreach ((new RemesaSepa())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

@@ -4,17 +4,18 @@ namespace App\Http\Controllers\Operacion;
 
 use App\Http\Controllers\ApiController;
 use App\Services\Operacion\AdeudoSepaEstadoService;
+use App\Services\Operacion\RemesaSepaEstadoService;
 use Exception;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Http\Request;
-use Models\Operacion\AdeudoSepaEstado;
+use Models\Operacion\RemesaSepaEstado;
 
-class AdeudoSepaEstadoController extends ApiController
+class RemesaSepaEstadoController extends ApiController
 {
 
     public function __construct()
     {
-        $this->defaultService = new AdeudoSepaEstadoService();
+        $this->defaultService = new RemesaSepaEstadoService();
 
         parent::__construct();
     }
@@ -79,11 +80,11 @@ class AdeudoSepaEstadoController extends ApiController
     public function show(Request $request, $id)
     {
         try {
-            $ordenFactura = AdeudoSepaEstado::findOrFail($id);
+            $ordenFactura = RemesaSepaEstado::findOrFail($id);
 
             return $this->respond(['data' => $ordenFactura]);
         } catch (ModelNotFoundException $e) {
-            return $this->respondNotFound('Resource Adeudo Sepa Estado with id ' . $id . ' not found');
+            return $this->respondNotFound('Resource Remesa Sepa Estado with id ' . $id . ' not found');
         } catch (Exception $e) {
             return $this->respondInternalError($e->getMessage());
         }

@@ -5,13 +5,13 @@ namespace App\Services\Operacion;
 use App\Functions\EloquentAbstraction;
 use Exception;
 use Illuminate\Support\Facades\DB;
-use Models\Operacion\AdeudoSepaEstado;
+use Models\Operacion\RemesaSepaEstado;
 
-class AdeudoSepaEstadoService
+class RemesaSepaEstadoService
 {
     public function get($fields)
     {
-        $query = new AdeudoSepaEstado();
+        $query = new RemesaSepaEstado();
 
         $query = $this->getQuery($fields, $query);
         return $query->get();
@@ -19,7 +19,7 @@ class AdeudoSepaEstadoService
 
     public function pluck($fields)
     {
-        $query = new AdeudoSepaEstado();
+        $query = new RemesaSepaEstado();
         $query = $this->getQuery($fields, $query);
 
         return $query->get()->pluck($fields['valuePluck'], $fields['keyPluck'] ?? 'id');
@@ -30,7 +30,7 @@ class AdeudoSepaEstadoService
 
         DB::beginTransaction();
         try {
-            $modulo = new AdeudoSepaEstado();
+            $modulo = new RemesaSepaEstado();
             $modulo->fill($data);
             $modulo->save();
 
@@ -46,7 +46,7 @@ class AdeudoSepaEstadoService
     {
         DB::beginTransaction();
         try {
-            $modulo = AdeudoSepaEstado::find($id);
+            $modulo = RemesaSepaEstado::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -62,7 +62,7 @@ class AdeudoSepaEstadoService
     {
         DB::beginTransaction();
         try {
-            $modulo = AdeudoSepaEstado::find($id);
+            $modulo = RemesaSepaEstado::find($id);
             $modulo->fill($data);
             $modulo->save();
 
@@ -76,9 +76,9 @@ class AdeudoSepaEstadoService
         }
     }
 
-    public function getQuery($fields, AdeudoSepaEstado $query)
+    public function getQuery($fields, RemesaSepaEstado $query)
     {
-        foreach ((new AdeudoSepaEstado())->getColumnsName() as $column) {
+        foreach ((new RemesaSepaEstado())->getColumnsName() as $column) {
             if (isset($fields[$column])) {
                 $query = EloquentAbstraction::addQueryRule($query, $column, $fields[$column]);
             }

@@ -12,7 +12,7 @@ class AdeudoSepa extends Model
 
     protected $guarded = [];
 
-    protected $table = "operacion__adeudos_sepa";
+    protected $table = "operacion__adeudo_sepa";
 
     public function empresa()
     {
@@ -21,7 +21,7 @@ class AdeudoSepa extends Model
 
     public function adeudoSepaEstado()
     {
-        return $this->belongsTo(AdeudoSepaEstado::class, 'estado_remesa_id', 'id');
+        return $this->belongsTo(RemesaSepa::class, 'remesa_id', 'id');
     }
 
 }
