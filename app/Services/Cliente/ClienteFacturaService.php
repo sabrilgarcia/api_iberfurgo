@@ -16,7 +16,7 @@ class ClienteFacturaService
 
         $query = FacturaSearch::getQuery($fields, $query);
 
-        $query = $query->where('numero','!=','NULL');
+        // $query = $query->where('numero','!=','NULL');
 
         //buscador
         if(isset($fields['numeroFactura'])){
