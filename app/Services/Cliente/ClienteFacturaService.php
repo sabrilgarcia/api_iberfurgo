@@ -105,7 +105,7 @@ class ClienteFacturaService
         $query = new FacturaSearch();
         $query = FacturaSearch::getQuery($fields, $query);
 
-        $query = $query->where('numero','!=','NULL');
+        // $query = $query->where('numero','!=','NULL');
         //buscador
         if(isset($fields['numeroFactura'])){
             $query=$query->where('numero','LIKE','%'.$fields['numeroFactura'].'%');
